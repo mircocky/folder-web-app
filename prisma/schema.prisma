@@ -1,11 +1,12 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
   provider     = "mysql"
   url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  referentialIntegrity = "prisma"
 }
 
 model ACCOUNTS {
@@ -52,7 +53,3 @@ model FIS_SHIPMENTLIST {
   job_status String? @db.VarChar(255)
 }
 
-generator client {
-  provider = "prisma-client-js"
-  output   = "./generated/client"
-}
