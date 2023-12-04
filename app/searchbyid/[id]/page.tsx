@@ -47,7 +47,7 @@ const IdPage = async ({
               </tr>
               <tr>
                 <td className="py-2 px-4 border-b font-semibold">To</td>
-                <td className="py-2 px-4 border-b">{job?.POD}</td>
+                <td className="py-2 px-4 border-b">{job?.consignee}</td>
               </tr>
               {job?.pickup_date ? (
                   <tr>
