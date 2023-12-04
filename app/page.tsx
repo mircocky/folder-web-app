@@ -4,6 +4,7 @@ export default function Home() {
   return (
     <div>
       <h1 className="text-slate-500">Hello Jay</h1>
+      <h1 className="text-slate-500">Bye Jay</h1>
     </div>
   )
 }
