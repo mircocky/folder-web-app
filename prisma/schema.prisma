@@ -51,3 +51,8 @@ model FIS_SHIPMENTLIST {
   consol_num String  @db.VarChar(255)
   job_status String? @db.VarChar(255)
 }
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
