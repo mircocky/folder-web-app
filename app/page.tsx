@@ -25,7 +25,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      <h1 className="mb-4">PNL Tracking System. Please enter your job id.</h1>
+      <h1 className="mb-4">PNL Tracking System. Please enter your job id...</h1>
       <div className="flex justify-start w-96">
         <Input
           className="me-4"
