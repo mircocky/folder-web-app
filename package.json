@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "install": "npx prisma generate && npm install",
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
