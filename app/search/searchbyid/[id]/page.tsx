@@ -7,7 +7,7 @@ const IdPage = async ({
 }) => {
 
   const prisma = new PrismaClient()
-  const job_id = await params.id
+  const job_id = params.id
 
   const job = await prisma.fIS_JOBLIST.findUnique({
     where: {
@@ -17,13 +17,13 @@ const IdPage = async ({
 
   return (
     <div>
-      <h1 style={{ width: '420px' }} className=" rounded bg-yellow-200 mb-5 p-2 text-center text-lg font-semibold">
+      <h1 className="rounded bg-yellow-200 mb-5 mt-5 p-2 text-center text-lg font-semibold">
         Search By ID
       </h1>
       <main>
 
         {job ? (
-          <table style={{ width: '420px' }} className="bg-white border border-gray-300">
+          <table  className="bg-white border border-gray-300 w-full">
             <tbody>
               <tr>
                 <td className="py-2 px-4 border-b font-semibold">Consol#</td>
@@ -107,6 +107,11 @@ const IdPage = async ({
               )}
                 {job?.ETD? (
                   <tr>
+                    {job?.departed == 0 ?(
+                    <td className="py-2 px-4 border-b font-semibold">
+                    Deaprture Date
+                    </td>
+                    ):(null)}
                     {job?.departed == 1 ?(
                     <td className="py-2 px-4 border-b font-semibold">
                     To depart on
@@ -129,12 +134,17 @@ const IdPage = async ({
                 )}
                 {job?.ETA? (
                   <tr>
-                    {job?.departed == 1 ?(
+                    {job?.arrived == 0 ?(
+                    <td className="py-2 px-4 border-b font-semibold">
+                    Arrival Date
+                    </td>
+                    ):(null)}
+                    {job?.arrived == 1 ?(
                     <td className="py-2 px-4 border-b font-semibold">
                     To arrive on
                     </td>
                     ):(null)}
-                    {job?.departed == 2 ?(
+                    {job?.arrived == 2 ?(
                     <td className="py-2 px-4 border-b font-semibold">
                     Arrived on
                     </td>
