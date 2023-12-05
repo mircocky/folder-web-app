@@ -21,11 +21,6 @@ const RootLayout = ({
 
   return (
     <html lang="en">
-
-     <head>
-      <link rel="icon" href="/logo.png" />
-    </head>
-
       <body className={inter.className}>
           <nav className="flex bg-blue-500 p-4">
               <ul className="flex space-x-10">
