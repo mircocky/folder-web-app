@@ -1,7 +1,7 @@
 // Import necessary libraries/components
 import Image from "next/image";
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
 
 return (
     <div className="w-full flex flex-col items-center mt-24">
