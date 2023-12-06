@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Image from 'next/image';
 import './globals.css'
-
+import profilePic from '../public/logo.png'
 import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,9 +22,9 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body className={inter.className}>
+         <p className="flex p-3"><Image src="/logo.png" alt="Home" width={80} height={35} /> <span className="p-2 text-blue-500 font-bold underline">PNL Tracking System</span></p>
           <nav className="flex bg-blue-500 p-4">
               <ul className="flex space-x-10">
-              <link rel="icon" href="/home.png"/>
                 <li>
                   <Link href="/" passHref className="text-white hover:underline flex flex-col items-center"><Image src="/home-icon.png" alt="Home" width={30} height={30}/>Home</Link>
                 </li>

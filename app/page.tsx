@@ -1,6 +1,6 @@
 // Import necessary libraries/components
 import Image from 'next/image';
-import profilePic from '../public/logo-icon.png'
+import profilePic from '../public/logo.png'
 
 const HomePage = () => {
   return (
