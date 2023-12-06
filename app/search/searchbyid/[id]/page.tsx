@@ -62,7 +62,7 @@ const IdPage = async ({
                     </td>
                     ):(null)}
                     <td className="py-2 px-4 border-b">
-                    {job?.pickup_date?.toLocaleDateString()}
+                    {job?.pickup_date?.toLocaleDateString('en-GB')}
                     </td>
                   </tr>
                 ) : (
@@ -84,7 +84,7 @@ const IdPage = async ({
                     </td>
                     ):(null)}
                     <td className="py-2 px-4 border-b">
-                    {job?.in_terminal_date?.toLocaleDateString()}
+                    {job?.in_terminal_date?.toLocaleDateString('en-GB')}
                     </td>
                   </tr>
                 ) : (
@@ -123,7 +123,7 @@ const IdPage = async ({
                     </td>
                     ):(null)}
                     <td className="py-2 px-4 border-b">
-                    {job?.ETD?.toLocaleDateString()}
+                    {job?.ETD?.toLocaleDateString('en-GB')}
                     </td>
                   </tr>
                 ) : (
@@ -150,7 +150,7 @@ const IdPage = async ({
                     </td>
                     ):(null)}
                     <td className="py-2 px-4 border-b">
-                    {job?.ETD?.toLocaleDateString()}
+                    {job?.ETD?.toLocaleDateString('en-GB')}
                     </td>
                   </tr>
                 ) : (
