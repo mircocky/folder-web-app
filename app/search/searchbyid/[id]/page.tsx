@@ -21,13 +21,12 @@ const IdPage = async ({
         Search By ID
       </h1>
       <main>
-
         {job ? (
           <table  className="bg-white border border-gray-300 w-full">
             <tbody>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold">Consol#</td>
-                <td className="py-2 px-4 border-b">{job?.consol_num}</td>
+                <td className="py-2 px-4 border-b font-semibold">PNL Booking#</td>
+                <td className="py-2 px-4 border-b">{job?.job_id}</td>
               </tr>
               <tr>
                 <td className="py-2 px-4 border-b font-semibold">Client Ref</td>
@@ -35,11 +34,11 @@ const IdPage = async ({
               </tr>
               <tr>
                 <td className="py-2 px-4 border-b font-semibold">Shipper</td>
-                <td className="py-2 px-4 border-b">{job?.shipper}</td>
+                <td className="py-2 px-4 border-b">{job?.shipper_name}</td>
               </tr>
               <tr>
                 <td className="py-2 px-4 border-b font-semibold">Consignee</td>
-                <td className="py-2 px-4 border-b">{job?.consignee}</td>
+                <td className="py-2 px-4 border-b">{job?.consignee_name}</td>
               </tr>
               <tr>
                 <td className="py-2 px-4 border-b font-semibold">From</td>

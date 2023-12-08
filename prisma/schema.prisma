@@ -28,9 +28,10 @@ model FIS_JOBLIST {
   pickedup           Int?      @default(0)
   in_terminal_date   DateTime? @db.Date
   lodged_in_terminal Int?      @default(0)
-  shipper            String?   @db.VarChar(45)
-  consignee          String?   @db.VarChar(45)
+  shipper            String?   @db.VarChar(25)
+  consignee          String?   @db.VarChar(25)
   vessel             String?   @db.VarChar(45)
+  Lloyds             String?   @db.VarChar(45)
   voyage             String?   @db.VarChar(10)
   POL                String?   @db.VarChar(10)
   POD                String?   @db.VarChar(10)
@@ -38,12 +39,19 @@ model FIS_JOBLIST {
   departed           Int?      @default(0)
   ETA                DateTime? @db.Date
   arrived            Int?      @default(0)
-  email              String?   @db.VarChar(255)
-  mobile             String?   @db.VarChar(10)
+  email_shipper      String?   @db.VarChar(255)
+  mobile_shipper     String?   @db.VarChar(25)
   commodity          String?   @db.VarChar(45)
-  agent_email        String?   @db.VarChar(255)
-  operator           String?   @db.VarChar(10)
+  agent              String?   @db.VarChar(25)
+  operator           String?   @db.VarChar(20)
   job_seq            Int?
+  shipper_name       String?   @db.VarChar(45)
+  consignee_name     String?   @db.VarChar(45)
+  agent_name         String?   @db.VarChar(45)
+  email_consignee    String?   @db.VarChar(45)
+  mobile_consignee   String?   @db.VarChar(45)
+  email_agent        String?   @db.VarChar(45)
+  mobile_agent       String?   @db.VarChar(45)
 }
 
 model FIS_SHIPMENTLIST {
@@ -52,3 +60,24 @@ model FIS_SHIPMENTLIST {
   job_status String? @db.VarChar(255)
 }
 
+model ACC_NOTIFICATION {
+  account_id           String @id @unique(map: "account_id_UNIQUE") @db.VarChar(45)
+  registeration_import Int?   @default(1) @db.TinyInt
+  registeration_export Int?   @default(1) @db.TinyInt
+  pickedup_import      Int?   @db.TinyInt
+  pickedup_export      Int?   @db.TinyInt
+  lodged_import        Int?   @db.TinyInt
+  lodged_export        Int?   @db.TinyInt
+  departed_import      Int?   @db.TinyInt
+  departed_export      Int?   @db.TinyInt
+  arrived_import       Int?   @db.TinyInt
+  arrived_export       Int?   @db.TinyInt
+  ex_customs_import    Int?   @db.TinyInt
+  ex_customs_export    Int?   @db.TinyInt
+  im_customs_import    Int?   @db.TinyInt
+  im_customs_export    Int?   @db.TinyInt
+  del_booking_import   Int?   @db.TinyInt
+  del_booking_export   Int?   @db.TinyInt
+  delivered_import     Int?   @db.TinyInt
+  delivered_export     Int?   @db.TinyInt
+}

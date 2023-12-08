@@ -25,7 +25,13 @@ if (!inputValue) {
     // Navigate or perform the desired action with the input value
     window.location.href = `/search/searchbyid/${inputValue}`;
 }
+
 };
+
+const handleRefresh = () => {
+  window.location.reload()
+};
+
   return (
     <div>
         <div className="flex mt-12">
@@ -39,6 +45,12 @@ if (!inputValue) {
                 onClick={handleSearch}
                 >
                 Search
+            </Button>
+            <Button
+                className="ms-2 bg-red-500"
+                onClick={handleRefresh}
+                >
+                Reload
             </Button>
         </div>
         <div>{children}</div>
