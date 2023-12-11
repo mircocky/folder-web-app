@@ -9,11 +9,37 @@ import 'react-toastify/dist/ReactToastify.css';
 
 interface CustomToastProps {
   closeToast: () => void;
-  notificationMessage: object;
+  notificationMessage: {
+    hello?: string;
+  };
+}
+
+interface MessageWithTime {
+  username_from: string;
+  message_for_web: {
+    job_id?: string;
+    client_ref?: string;
+    shipper_name?: string;
+    consignee_name?: string;
+    POL?: string;
+    POD?: string;
+    pickup_date?: string;
+    pickedup?: number;
+    in_terminal_date?: string;
+    lodged_in_terminal?: number;
+    vessel?: string;
+    voyage?: string;
+    ETD?: string;
+    departed?: number;
+    ETA?: string;
+    arrived?: number;
+    // Add other properties as needed
+  };
+  currentTime: string;
 }
 
 const WebSocketComponent: React.FC = () => {
-  const [messages, setMessages] = useState<{ username_from: string; message_for_web: object }[]>([]);
+  const [messages, setMessages] = useState<MessageWithTime[]>([]);
 
   const CustomToast: React.FC<CustomToastProps> = ({ closeToast , notificationMessage }) => (
     <div>
