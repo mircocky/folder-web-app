@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client'
 
-
 const IdPage = async ({
     params,
 }:{
@@ -150,7 +149,7 @@ const IdPage = async ({
                     </td>
                     ):(null)}
                     <td className="py-2 px-4 border-b">
-                    {job?.ETA?.toLocaleDateString('en-GB')}
+                    {job?.ETD?.toLocaleDateString('en-GB')}
                     </td>
                   </tr>
                 ) : (
