@@ -38,6 +38,44 @@ interface MessageWithTime {
   currentTime: string;
 }
 
+interface ShipmentUpdate {
+  job_id: string;
+  shipper_name: string;
+}
+
+const showNotification = (shipmentUpdate: ShipmentUpdate) => {
+  console.log('Attempting to show notification');
+  if ('Notification' in window) {
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Permission granted. Showing notification.');
+
+        try {
+          const notification = new Notification('Shipment Update Notification', {
+            body : `Job ID: ${shipmentUpdate.job_id}, Shipper: ${shipmentUpdate.shipper_name}`,
+            icon: '/logo.png',
+          });
+
+          notification.onclick = () => {
+            console.log('Notification clicked');
+          };
+
+          notification.onclose = () => {
+            console.log('Notification closed');
+          };
+        } catch (error) {
+          console.error('Error creating Notification:', error);
+        }
+      } else {
+        console.log('Permission denied.');
+      }
+    });
+  } else {
+    console.log('Notifications not supported in this browser.');
+  }
+};
+
+
 const WebSocketComponent: React.FC = () => {
   const [messages, setMessages] = useState<MessageWithTime[]>([]);
 
@@ -66,6 +104,10 @@ const WebSocketComponent: React.FC = () => {
     })
 
   }
+
+    
+
+
   useEffect(() => {
     // Connect to the Socket.IO server
     const socket = io('wss://port-0-folder-web-app-websocket-server-32updzt2alppbaefq.sel4.cloudtype.app/');
@@ -79,7 +121,11 @@ const WebSocketComponent: React.FC = () => {
     
 
     // Event listener for messages from the server
-    socket.on('privateMessage', (data: { username_from: string; message_for_web: object ;}) => {
+    socket.on('privateMessage', (data:{username_from: string; message_for_web: object ;}) => {
+      
+
+        showNotification(data.message_for_web as ShipmentUpdate)
+
         console.log('Message from server:', data);
 
         const currentTime = new Date().toLocaleString('en-GB', {
