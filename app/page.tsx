@@ -8,8 +8,8 @@ const HomePage = () => {
       <Image
       src={profilePic}
       alt="Picture of the author"
-      width={500} 
-      height={500} 
+      width={300} 
+      height={300} 
       blurDataURL="data:..."
       placeholder="blur" 
     />

@@ -25,6 +25,8 @@ const IdPage = async ({
           <table  className="bg-white border border-gray-300 w-full">
             <tbody>
               <tr>
+              </tr>
+              <tr>
                 <td className="py-2 px-4 border-b font-semibold">PNL Booking#</td>
                 <td className="py-2 px-4 border-b">{job?.job_id}</td>
               </tr>

@@ -1,91 +1,41 @@
-'use client'
-// app/contact/page.tsx
-// app/contact/page.tsx
-import React from 'react';
-import Head from 'next/head';
-
 const ContactPage: React.FC = () => {
-  const subscribe = async () => {
-    try {
-      const registration = await navigator.serviceWorker.register('/sw.js', {
-        scope: '/',
-      });
 
-      const existingSubscription = await registration.pushManager.getSubscription();
+interface ContactDetails {
+  name: string;
+  address: string;
+  landline: string;
+  email : string;
+  fax : string;
 
-      if (!existingSubscription) {
-        // Subscribe a new push notification
-        const newSubscription = await subscribeUser(registration);
-        console.log('New subscription:', newSubscription);
-      } else {
-        console.log('Already subscribed:', existingSubscription);
-      }
-    } catch (error) {
-      console.error('Error subscribing to push notifications:', error);
-    }
-  };
+}
 
-  const subscribeUser = async (registration: ServiceWorkerRegistration) => {
-    try {
-      const newSubscription = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: 'BACVDg1IY5L2sGus64krTUOGMIqv3ljPqgzupCaxyhGU2x3b_rNcPPCTOqwxaAazHltJKmvi9eJRKhs_y0DKdjg',
-      });
+const contactDetails : ContactDetails = {
+  name: "PNL GLOBAL LOGISTICS PTY LTD",
+  address: `87 Egerton Street, 
+Silverwater NSW 2128`,
+  landline: "61-2-9700-1188",
+  fax: "61-2-9700-0001",
+  email: "info@pnlglobal.com.au",
+}
 
-      // Send the new subscription to your server (you need a backend to handle this)
-      // sendSubscriptionToServer(newSubscription);
 
-      return newSubscription;
-    } catch (error) {
-      console.error('Error subscribing user:', error);
-      throw error;
-    }
-  };
-
-  const showNotification = () => {
-    console.log('Attempting to show notification');
-    if ('Notification' in window) {
-      Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-          console.log('Permission granted. Showing notification.');
-  
-          try {
-            const notification = new Notification('Hello', {
-              body: 'This is the body of the notification',
-              icon: '/logo.png',
-            });
-  
-            notification.onclick = () => {
-              console.log('Notification clicked');
-            };
-  
-            notification.onclose = () => {
-              console.log('Notification closed');
-            };
-          } catch (error) {
-            console.error('Error creating Notification:', error);
-          }
-        } else {
-          console.log('Permission denied.');
-        }
-      });
-    } else {
-      console.log('Notifications not supported in this browser.');
-    }
-  };
-  
-
-  return (
-    <div>
-      <Head>
-        <title>Push Notification Example</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="manifest" href="/manifest.json" />
-      </Head>
-
-      <button onClick={subscribe}>Subscribe to Push Notifications</button>
-      <button onClick={showNotification}>Show Push Notification</button>
-    </div>
+return (
+  <div className="border p-4 my-4 bg-white shadow-md rounded-md custom-text-kind">
+  <ul>
+    <li className="flex flex-col space-y-3">
+      <span className="font-bold text-xl">{contactDetails.name}</span>
+      <pre className="text-gray-600 font-bold">{contactDetails.address}</pre>
+      <span className="text-gray-600">PHONE: {contactDetails.landline}</span>
+      <span className="text-gray-600">FAX: {contactDetails.fax}</span>
+      <span>
+        Email: 
+        <a href={`mailto:${contactDetails.email}`} className="text-blue-600 underline">
+          {contactDetails.email}
+        </a>
+      </span>
+    </li>
+  </ul>
+</div>
   );
 };
 

@@ -35,6 +35,7 @@ const handleRefresh = () => {
   window.location.reload()
 };
 
+
   return (
     <div>
         <div className="flex mt-12">
@@ -56,7 +57,7 @@ const handleRefresh = () => {
                 Reload
             </Button>
         </div>
-        <div><WebSocketComponent /></div>
+        {/* <div><WebSocketComponent  /></div> */}
         <div>{children}</div>
     </div>
   );

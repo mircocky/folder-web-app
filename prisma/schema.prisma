@@ -52,12 +52,29 @@ model FIS_JOBLIST {
   mobile_consignee   String?   @db.VarChar(45)
   email_agent        String?   @db.VarChar(45)
   mobile_agent       String?   @db.VarChar(45)
+  memo               String?   @default("") @db.VarChar(500)
 }
 
 model FIS_SHIPMENTLIST {
-  job_id     Int     @id @default(autoincrement())
-  consol_num String  @db.VarChar(255)
-  job_status String? @db.VarChar(255)
+  job_id            Int       @id @default(autoincrement())
+  job_status        Int?
+  CONSOL            String    @db.VarChar(255)
+  SLOT              String?   @db.VarChar(45)
+  OPERATOR          String?   @db.VarChar(20)
+  AGENT             String?   @db.VarChar(45)
+  VESSEL            String?   @db.VarChar(45)
+  Lloyds            String?   @db.VarChar(45)
+  VOY               String?   @db.VarChar(45)
+  ETD               DateTime? @db.Date
+  departed          Int?
+  ETA               DateTime? @db.Date
+  arrived           Int?
+  CLEAR             DateTime? @db.Date
+  cleared           Int?
+  EST_DELIVERY_DATE DateTime? @map("EST DELIVERY_DATE") @db.Date
+  delivered         Int?
+  POL               String?   @db.VarChar(15)
+  POD               String?   @db.VarChar(15)
 }
 
 model ACC_NOTIFICATION {

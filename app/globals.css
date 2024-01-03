@@ -1,6 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-text-kind {
+  font-family: 'custom', sans-serif;
+  color: #4a5568;
+}
+
+pre {
+  font-family: 'custom', monospace; /* Use 'monospace' for a consistent width font */
+}
  
 @layer base {
   :root {
