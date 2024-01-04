@@ -234,19 +234,40 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
 
   type inconSizeType = {
     widthSize:number,
-    heightSize:number
+    heightSize:number 
   }
-  const iconSize: inconSizeType = {
-    widthSize : 30,
-    heightSize : 0
-  }
+   
+  // sizes of the progress bar
+  const iconsSizeClass:string = "xxs:w-8 xxs:h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12"
+  const textSizeClass:string = "text-[0.4rem] xxs:text-xxs xs:text-xs sm:text-sm"
 
-  const arrowSize: inconSizeType = {
+  const iconSize: inconSizeType = {
     widthSize : 25,
     heightSize : 0
   }
 
-  const textSize: string = "text-[0.5rem]"
+  const arrowSize: inconSizeType = {
+    widthSize : 20,
+    heightSize : 0
+  }
+
+  // sizes of the main table
+  const rowHeadTextSize: string = "text-[0.8rem] py-1 px-2 w-36\
+    xxs:text-base xxs:py-1 xxs:px-2 xxs:w-42\
+    xs:text-lg xs:py-2 xs:px-4 xs:w-48\
+    sm:text-lg sm:py-3 sm:px-5 sm:w-72\
+    md:w-80\
+    font-semibold border-b";
+     
+
+  const rowContentTextSize: string = "text-[0.8rem] py-1 px-2\
+       xxs:text-base xxs:py-1 xxs:px-2\
+       xs:text-lg xs:py-2 xs:px-4\
+       sm:text-lg sm:py-2 sm:px-4\
+       border-b";
+
+  // <td className="py-2 px-4 border-b font-semibold w-48">Client Ref</td>
+  // <td className="py-2 px-4 border-b">{message?.message_for_web?.client_ref}</td>
 
   return (
     <div>
@@ -262,7 +283,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
 
 {messages3?.CONSOL?(
 
-    <div className="p-8 border">
+    <div className="px-1 py-2 xxs:px-1.5 py-2.5 xs:px-2.5 py-4 sm:p-4 md:p-8 border">
 
       <div className="flex justify-between">
 
@@ -271,17 +292,18 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   <Image
                     src="/vessel_to_depart.png"
                     alt="vessel to depart"
+                    className={iconsSizeClass}
                     width={iconSize.widthSize}
                     height={iconSize.heightSize}
                   />
                 <span className="flex flex-col items-start">
-                      <span className={`mt-1 ${textSize}`}>
+                      <span className={`mt-1 ${textSizeClass}`}>
                         ETD {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
                         messages3.ETD
                         ):new Date(messages3.ETD).toLocaleDateString('en-GB')}
                       </span>
 
-                      <span className={`mt-1 ${textSize}`}>
+                      <span className={`mt-1 ${textSizeClass}`}>
                         ETA {new Date(messages3.ETA).toLocaleDateString('en-GB') === "Invalid Date" ? (
                         messages3.ETA
                         ):new Date(messages3.ETA).toLocaleDateString('en-GB')}
@@ -296,18 +318,19 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   <Image
                     src="/vessel_in_transit.gif"
                     alt="vessel to depart"
+                    className={iconsSizeClass}
                     width={iconSize.widthSize}
                     height={iconSize.heightSize}
                   />
-                <span className={`mt-1 ${textSize}`}>In transit</span>  
+                <span className={`mt-1 ${textSizeClass}`}>In transit</span>  
                 <span className="flex flex-col items-start">
-                      <span className={`mt-1 ${textSize}`}>
+                      <span className={`mt-1 ${textSizeClass}`}>
                         ATD {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
                         messages3.ETD
                         ):new Date(messages3.ETD).toLocaleDateString('en-GB')}
                       </span>
 
-                      <span className={`mt-1 ${textSize}`}>
+                      <span className={`mt-1 ${textSizeClass}`}>
                         ETA {new Date(messages3.ETA).toLocaleDateString('en-GB') === "Invalid Date" ? (
                         messages3.ETA
                         ):new Date(messages3.ETA).toLocaleDateString('en-GB')}
@@ -322,20 +345,21 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 <Image
                   src="/vessel_arrived.png"
                   alt="vessel_arrived"
+                  className={iconsSizeClass}
                   width={iconSize.widthSize}
                   height={iconSize.heightSize}
                 />
-          <span className={`mt-1 ${textSize}`}>Arrived</span>
+          <span className={`mt-1 ${textSizeClass}`}>Arrived</span>
 
             <span className="flex flex-col items-start">
 
-              <span className={`mt-1 ${textSize}`}>
+              <span className={`mt-1 ${textSizeClass}`}>
                 ATD {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
                 messages3.ETD
                 ):new Date(messages3.ETD).toLocaleDateString('en-GB')}
               </span>
 
-              <span className={`mt-1 ${textSize}`}>
+              <span className={`mt-1 ${textSizeClass}`}>
                 ATA {new Date(messages3.ETA).toLocaleDateString('en-GB') === "Invalid Date" ? (
                 messages3.ETA
                 ):new Date(messages3.ETA).toLocaleDateString('en-GB')}
@@ -349,6 +373,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                         <Image
                           src="/arrow_active.gif"
                           alt="active arrow"
+                          className={iconsSizeClass}
                           width={arrowSize.widthSize}
                           height={arrowSize.heightSize}
                         />
@@ -358,6 +383,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   <Image
                     src="/arrow_inactive.png"
                     alt="inactive arrow"
+                    className={iconsSizeClass}
                     width={arrowSize.widthSize}
                     height={arrowSize.heightSize}
                   />
@@ -369,12 +395,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                         src="/customs_clear.png"
                         alt="customs_clear"
+                        className={iconsSizeClass}
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                <span className={`mt-1 ${textSize}`}>Customs</span>
+                <span className={`mt-1 ${textSizeClass}`}>Customs</span>
 
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       Est {new Date(messages3.CLEAR).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.CLEAR
                       ):new Date(messages3.CLEAR).toLocaleDateString('en-GB')}
@@ -390,12 +417,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                         src="/customs_clearing.gif"
                         alt="customs_clearing"
+                        className={iconsSizeClass}
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                <span className={`mt-1 ${textSize}`}>Customs clearing...</span>
+                <span className={`mt-1 ${textSizeClass}`}>Customs clearing...</span>
 
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       Est {new Date(messages3.CLEAR).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.CLEAR
                       ):new Date(messages3.CLEAR).toLocaleDateString('en-GB')}
@@ -410,12 +438,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                         src="/customs_cleared.png"
                         alt="customs_cleared"
+                        className={iconsSizeClass}
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                <span className={`mt-1 ${textSize}`}>Customs cleared</span>
+                <span className={`mt-1 ${textSizeClass}`}>Customs cleared</span>
 
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       {new Date(messages3.CLEAR).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.CLEAR
                       ):new Date(messages3.CLEAR).toLocaleDateString('en-GB')}
@@ -429,6 +458,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                                   <Image
                                     src="/arrow_active.gif"
                                     alt="active arrow"
+                                    className={iconsSizeClass}
                                     width={arrowSize.widthSize}
                                     height={arrowSize.heightSize}
                                   />
@@ -438,6 +468,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                             <Image
                               src="/arrow_inactive.png"
                               alt="inactive arrow"
+                              className={iconsSizeClass}
                               width={arrowSize.widthSize}
                               height={arrowSize.heightSize}
                             />
@@ -450,12 +481,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                         src="/truck_inactive.png"
                         alt="truck_inactive"
+                        className={iconsSizeClass}
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                <span className={`mt-1 ${textSize}`}>booking delivery</span>
+                <span className={`mt-1 ${textSizeClass}`}>booking delivery</span>
 
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.ETD
                       ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
@@ -470,12 +502,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                         src="/pickup_booked.gif"
                         alt="delivery_booked"
+                        className={iconsSizeClass}
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                <span className={`mt-1 ${textSize}`}>delivery booked</span>
+                <span className={`mt-1 ${textSizeClass}`}>delivery booked</span>
 
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.ETD
                       ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
@@ -490,9 +523,9 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                    <span className={`mt-1 ${textSize}`}>Delivered</span>  
+                    <span className={`mt-1 ${textSizeClass}`}>Delivered</span>  
 
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.ETD
                       ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
@@ -508,6 +541,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                                   <Image
                                     src="/arrow_active.gif"
                                     alt="active arrow"
+                                    className={iconsSizeClass}
                                     width={arrowSize.widthSize}
                                     height={arrowSize.heightSize}
                                   />
@@ -517,6 +551,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                             <Image
                               src="/arrow_inactive.png"
                               alt="inactive arrow"
+                              className={iconsSizeClass}
                               width={arrowSize.widthSize}
                               height={arrowSize.heightSize}
                             />
@@ -528,12 +563,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                         src="/box_delivered.gif"
                         alt="delivery_done"
+                        className={iconsSizeClass}
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                <span className={`mt-1 ${textSize}`}>Delivery confirmed</span>
+                <span className={`mt-1 ${textSizeClass}`}>Delivery confirmed</span>
 
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.ETD
                       ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
@@ -544,12 +580,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 <Image
                 src="/client_warehouse.png"
                 alt="delivery_done"
+                className={iconsSizeClass}
                 width={iconSize.widthSize}
                 height={iconSize.heightSize}
               />
-               <span className={`mt-1 ${textSize}`}>Client depot</span>
+               <span className={`mt-1 ${textSizeClass}`}>Client depot</span>
 
-            <span className={`mt-1 ${textSize}`}>
+            <span className={`mt-1 ${textSizeClass}`}>
               {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
               messages3.ETD
               ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
@@ -565,18 +602,18 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
 
 
 { messages2 && !messages3?.CONSOL ? (
-    <div className="p-8 border">
-
+    <div className="px-1 py-2 xxs:px-1.5 py-2.5 xs:px-2.5 py-4 sm:p-4 md:p-8 border">
       <div className="flex justify-between">
         <div className="flex flex-col items-center"> 
               <Image
                 src="/registered.png"
                 alt="registered"
+                className={iconsSizeClass}
                 width={iconSize.widthSize}
                 height={iconSize.heightSize}
               />
-              <span className={`mt-1 ${textSize}`}>Registered</span>
-              <span className={`mt-1 ${textSize}`}>IS{messages2.job_id}</span>
+              <span className={`mt-1 ${textSizeClass}`}>Registered</span>
+              <span className={`mt-1 ${textSizeClass}`}>IS{messages2.job_id}</span>
         </div>
 
       {messages2.pickedup == 1 ? (
@@ -584,6 +621,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   <Image
                     src="/arrow_active.gif"
                     alt="active arrow"
+                    className={iconsSizeClass}
                     width={arrowSize.widthSize}
                     height={arrowSize.heightSize}
                   />
@@ -593,6 +631,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
             <Image
               src="/arrow_inactive.png"
               alt="active arrow"
+              className={iconsSizeClass}
               width={arrowSize.widthSize}
               height={arrowSize.heightSize}
             />
@@ -604,10 +643,11 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
             <Image
               src="/truck_inactive.png"
               alt="Example GIF"
+              className={iconsSizeClass}
               width={iconSize.widthSize}
               height={iconSize.heightSize}
             />
-            <span className={`mt-1 ${textSize}`}>Pickup</span>
+            <span className={`mt-1 ${textSizeClass}`}>Pickup</span>
             </div>
       ):null}
 
@@ -616,11 +656,12 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
             <Image
               src="/pickup_booked.gif"
               alt="Example GIF"
+              className={iconsSizeClass}
               width={iconSize.widthSize}
               height={iconSize.heightSize}
             />
-            <span className={`mt-1 ${textSize}`}>Truck booked</span>
-            <span className={`mt-1 ${textSize}`}>Est. {new Date(messages2.pickup_date).toLocaleDateString('en-GB')}</span>
+            <span className={`mt-1 ${textSizeClass}`}>Truck booked</span>
+            <span className={`mt-1 ${textSizeClass}`}>Est. {new Date(messages2.pickup_date).toLocaleDateString('en-GB')}</span>
             </div>
       ):null}
    
@@ -629,11 +670,12 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
               <Image
                 src="/pickup_done.png"
                 alt="Example GIF"
+                className={iconsSizeClass}
                 width={iconSize.widthSize}
                 height={iconSize.heightSize}
               />
-          <span className={`mt-1 ${textSize}`}>Pickup done</span>
-          <span className={`mt-1 ${textSize}`}>{new Date(messages2.pickup_date).toLocaleDateString('en-GB')}</span>
+          <span className={`mt-1 ${textSizeClass}`}>Pickup done</span>
+          <span className={`mt-1 ${textSizeClass}`}>{new Date(messages2.pickup_date).toLocaleDateString('en-GB')}</span>
       </div>
       ):null}
 
@@ -643,6 +685,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   <Image
                     src="/arrow_active.gif"
                     alt="active arrow"
+                    className={iconsSizeClass}
                     width={arrowSize.widthSize}
                     height={arrowSize.heightSize}
                   />
@@ -652,6 +695,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
             <Image
               src="/arrow_inactive.png"
               alt="active arrow"
+              className={iconsSizeClass}
               width={arrowSize.widthSize}
               height={arrowSize.heightSize}
             />
@@ -662,10 +706,11 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
             <Image
               src="/warehouse_inactive.png"
               alt="Example GIF"
+              className={iconsSizeClass}
               width={iconSize.widthSize}
               height={iconSize.heightSize}
             />
-            <span className={`mt-1 ${textSize}`}>Terminal(origin)</span>
+            <span className={`mt-1 ${textSizeClass}`}>Terminal(origin)</span>
             </div>
       ):null}
 
@@ -674,11 +719,12 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
             <Image
               src="/warehouse_est.gif"
               alt="Example GIF"
+              className={iconsSizeClass}
               width={iconSize.widthSize}
               height={iconSize.heightSize}
             />
-            <span className={`mt-1 ${textSize}`}>To terminal(origin)</span>
-            <span className={`mt-1 ${textSize}`}>Est. {new Date(messages2.in_terminal_date).toLocaleDateString('en-GB')}</span>
+            <span className={`mt-1 ${textSizeClass}`}>To terminal(origin)</span>
+            <span className={`mt-1 ${textSizeClass}`}>Est. {new Date(messages2.in_terminal_date).toLocaleDateString('en-GB')}</span>
             </div>
       ):null}
    
@@ -687,11 +733,12 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
               <Image
                 src="/lodged_in_terminal.png"
                 alt="Example GIF"
+                className={iconsSizeClass}
                 width={iconSize.widthSize}
                 height={iconSize.heightSize}
               />
-          <span className={`mt-1 ${textSize}`}>In Termial(origin)</span>
-          <span className={`mt-1 ${textSize}`}>{new Date(messages2?.in_terminal_date).toLocaleDateString('en-GB')}</span>
+          <span className={`mt-1 ${textSizeClass}`}>In Termial(origin)</span>
+          <span className={`mt-1 ${textSizeClass}`}>{new Date(messages2?.in_terminal_date).toLocaleDateString('en-GB')}</span>
       </div>
       ):null}
       
@@ -700,6 +747,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   <Image
                     src="/arrow_active.gif"
                     alt="active arrow"
+                    className={iconsSizeClass}
                     width={arrowSize.widthSize}
                     height={arrowSize.heightSize}
                   />
@@ -709,6 +757,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
             <Image
               src="/arrow_inactive.png"
               alt="active arrow"
+              className={iconsSizeClass}
               width={arrowSize.widthSize}
               height={arrowSize.heightSize}
             />
@@ -720,14 +769,15 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   <Image
                     src="/vessel_inactive.png"
                     alt="vessel inactive"
+                    className={iconsSizeClass}
                     width={iconSize.widthSize}
                     height={iconSize.heightSize}
                   />
-                  <span className={`mt-1 ${textSize}`}>Departure</span>
+                  <span className={`mt-1 ${textSizeClass}`}>Departure</span>
 
                 <span className="mt-5 mb-5">
                   <Image
-                      className="transform rotate-90"
+                      className={`transform rotate-90 ${iconsSizeClass}`}
                       src="/arrow_inactive.png"
                       alt="vessel in transit"
                       width={iconSize.widthSize}
@@ -743,17 +793,18 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   <Image
                     src="/vessel_to_depart.png"
                     alt="vessel to depart"
+                    className={iconsSizeClass}
                     width={iconSize.widthSize}
                     height={iconSize.heightSize}
                   />
-                  <span className={`mt-1 ${textSize}`}>ETD {new Date(messages2.ETD).toLocaleDateString('en-GB')}</span>
+                  <span className={`mt-1 ${textSizeClass}`}>ETD {new Date(messages2.ETD).toLocaleDateString('en-GB')}</span>
                   {messages2.arrived == 1?(
-                   <span className={`mt-1 ${textSize}`}>ETA {new Date(messages2?.ETA).toLocaleDateString('en-GB')}</span>
+                   <span className={`mt-1 ${textSizeClass}`}>ETA {new Date(messages2?.ETA).toLocaleDateString('en-GB')}</span>
                   ):null}
 
                     <span className="mt-5 mb-5">
                         <Image
-                              className="transform rotate-90"
+                              className={`transform rotate-90 ${iconsSizeClass}`}
                               src="/arrow_inactive.png"
                               alt="vessel in transit"
                               width={arrowSize.widthSize}
@@ -769,15 +820,16 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                     <Image
                       src="/vessel_in_transit.gif"
                       alt="vessel in transit"
+                      className={iconsSizeClass}
                       width={iconSize.widthSize}
                       height={iconSize.heightSize}
                     />
-                <span className={`mt-1 ${textSize}`}>In transit</span>
-                <span className={`mt-1 ${textSize}`}>ATD {new Date(messages2?.ETD).toLocaleDateString('en-GB')}</span>
+                <span className={`mt-1 ${textSizeClass}`}>In transit</span>
+                <span className={`mt-1 ${textSizeClass}`}>ATD {new Date(messages2?.ETD).toLocaleDateString('en-GB')}</span>
 
             <span className="mt-5 mb-5">
                 <Image
-                      className="transform rotate-90"
+                      className={`transform rotate-90 ${iconsSizeClass}`}
                       src="/arrow_active.gif"
                       alt="vessel in transit"
                       width={arrowSize.widthSize}
@@ -798,18 +850,19 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                             src="/delivered.png"
                             alt="vessel in transit"
+                            className={iconsSizeClass}
                             width={iconSize.widthSize}
                             height={iconSize.heightSize}
                           />
                     </span>
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       Delivered
                     </span>
                 </div>
 
                 <span>
                   <Image
-                        className="transform rotate-180"
+                        className={`transform rotate-180 ${iconsSizeClass}`}
                         src="/arrow_inactive.png"
                         alt="vessel in transit"
                         width={arrowSize.widthSize}
@@ -822,22 +875,23 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                             src="/pickup_done.png"
                             alt="vessel in transit"
+                            className={iconsSizeClass}
                             width={iconSize.widthSize}
                             height={iconSize.heightSize}
                             style={{ transform: 'scaleX(-1)' }}
                           />
                     </span>
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       Delivery
                     </span>
                     {messages2.arrived == 1?(
-                   <span className={`mt-1 ${textSize}`}>Est {new Date(new Date(messages2?.ETA).getTime()+6*24*60*60*1000).toLocaleDateString('en-GB')}</span>
+                   <span className={`mt-1 ${textSizeClass}`}>Est {new Date(new Date(messages2?.ETA).getTime()+6*24*60*60*1000).toLocaleDateString('en-GB')}</span>
                   ):null}
                 </div>
                 
                 <span>
                   <Image
-                        className="transform rotate-180"
+                        className={`transform rotate-180 ${iconsSizeClass}`}
                         src="/arrow_inactive.png"
                         alt="vessel in transit"
                         width={arrowSize.widthSize}
@@ -850,21 +904,22 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                             src="/customs_clear.png"
                             alt="vessel in transit"
+                            className={iconsSizeClass}
                             width={iconSize.widthSize}
                             height={iconSize.heightSize}
                           />
                     </span>
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       Customs
                     </span>
                     {messages2.arrived == 1?(
-                   <span className={`mt-1 ${textSize}`}>Est {new Date(new Date(messages2?.ETA).getTime()+3*24*60*60*1000).toLocaleDateString('en-GB')}</span>
+                   <span className={`mt-1 ${textSizeClass}`}>Est {new Date(new Date(messages2?.ETA).getTime()+3*24*60*60*1000).toLocaleDateString('en-GB')}</span>
                   ):null}
                 </div>
 
                 <span>
                   <Image
-                        className="transform rotate-180"
+                        className={`transform rotate-180 ${iconsSizeClass}`}
                         src="/arrow_inactive.png"
                         alt="vessel in transit"
                         width={arrowSize.widthSize}
@@ -877,15 +932,16 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                             src="/vessel_arrived.png"
                             alt="vessel arrived"
+                            className={iconsSizeClass}
                             width={iconSize.widthSize}
                             height={iconSize.heightSize}
                           />
                     </span>
-                    <span className={`mt-1 ${textSize}`}>
+                    <span className={`mt-1 ${textSizeClass}`}>
                       Dest Port
                     </span>
                     {messages2.arrived == 1?(
-                   <span className={`mt-1 ${textSize}`}>ETA {new Date(messages2?.ETA).toLocaleDateString('en-GB')}</span>
+                   <span className={`mt-1 ${textSizeClass}`}>ETA {new Date(messages2?.ETA).toLocaleDateString('en-GB')}</span>
                   ):null}
                 </div>
          </div>
@@ -906,36 +962,36 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
        <table  className="bg-white border border-gray-300 w-full">
             <tbody>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">Consol#</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.CONSOL}</td>
+                <td className={rowHeadTextSize}>Consol#</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.CONSOL}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">From</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.POL}</td>
+                <td className={rowHeadTextSize}>From</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.POL}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">To</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.POD}</td>
+                <td className={rowHeadTextSize}>To</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.POD}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">VESSEL</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.VESSEL} {message?.message_for_web?.VOY}</td>
+                <td className={rowHeadTextSize}>VESSEL</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.VESSEL} {message?.message_for_web?.VOY}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">ETD</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.ETD}</td>
+                <td className={rowHeadTextSize}>ETD</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.ETD}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">ETA</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.ETA}</td>
+                <td className={rowHeadTextSize}>ETA</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.ETA}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">CUSTOMS CLEAR</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.CLEAR}</td>
+                <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.CLEAR}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">EST DELIVERY DATE</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.EST_DELIVERY_DATE}</td>
+                <td className={rowHeadTextSize}>EST DELIVERY DATE</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.EST_DELIVERY_DATE}</td>
               </tr>
             </tbody>
          </table>
@@ -950,155 +1006,157 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
        <table  className="bg-white border border-gray-300 w-full">
             <tbody>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">PNL Booking#</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.job_id}</td>
+              {/* const rowHeadTextSize: string ="xxs:w-8 xxs:h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12"
+              const rowContentTextSize: string ="xxs:w-8 xxs:h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12" */}
+                <td className={rowHeadTextSize}>PNL Booking#</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.job_id}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">Client Ref</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.client_ref}</td>
+                <td className={rowHeadTextSize}>Client Ref</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.client_ref}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">Shipper</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.shipper_name}</td>
+                <td className={rowHeadTextSize}>Shipper</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.shipper_name}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">Consignee</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.consignee_name}</td>
+                <td className={rowHeadTextSize}>Consignee</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.consignee_name}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">From</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.POL}</td>
+                <td className={rowHeadTextSize}>From</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.POL}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">To</td>
-                <td className="py-2 px-4 border-b">{message?.message_for_web?.POD}</td>
+                <td className={rowHeadTextSize}>To</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.POD}</td>
               </tr>
               {message?.message_for_web?.pickup_date?(
                   <tr>
                     {message?.message_for_web?.pickedup == 0 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     Pickup date
                     </td>
                     ):(null)}
                     {message?.message_for_web?.pickedup == 1 ?(
-                    <td className="py-2 px-4 border-b font-semibold underline text-orange-500 w-48">
+                    <td className={`${rowHeadTextSize} underline text-orange-500`}>
                     To be picked up on 
                     </td>
                     ):(null)}
                     {message?.message_for_web?.pickedup == 2 ?(
-                    <td className="py-2 px-4 border-b font-semibold underline text-green-500 w-48">
+                    <td className={`${rowHeadTextSize} underline text-green-500`}>
                     Picked up on *
                     </td>
                     ):(null)}
                     {message?.message_for_web?.pickedup == 0 ?(
-                    <td className="py-2 px-4 border-b">
+                    <td className={rowContentTextSize}>
                     Unkown
                     </td>
-                    ): (<td className="py-2 px-4 border-b">{new Date(message?.message_for_web?.pickup_date).toLocaleDateString('en-GB')}</td>)}
+                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.pickup_date).toLocaleDateString('en-GB')}</td>)}
                   </tr>
                 ) : (
                   <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Pickup date</td>
-                    <td className="py-2 px-4 border-b">Unkown</td>
+                    <td className={rowHeadTextSize}>Pickup date</td>
+                    <td className={rowContentTextSize}>Unkown</td>
                   </tr>
               )}
               {message?.message_for_web?.in_terminal_date?(
                   <tr>
                     {message?.message_for_web?.lodged_in_terminal == 0 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     In terminal date
                     </td>
                     ):(null)}
                     {message?.message_for_web?.lodged_in_terminal == 1 ?(
-                    <td className="py-2 px-4 border-b font-semibold underline text-orange-500 w-48">
+                    <td className={`${rowHeadTextSize} underline text-orange-500`}>
                     To be lodged in terminal on
                     </td>
                     ):(null)}
                     {message?.message_for_web?.lodged_in_terminal == 2 ?(
-                    <td className="py-2 px-4 border-b font-semibold underline text-green-500 w-48">
+                    <td className={`${rowHeadTextSize} underline text-green-500`}>
                     Lodged in terminal on *
                     </td>
                     ):(null)}
                     {message?.message_for_web?.lodged_in_terminal == 0 ?(
-                    <td className="py-2 px-4 border-b">
+                    <td className={rowContentTextSize}>
                     Unkown
                     </td>
-                    ): (<td className="py-2 px-4 border-b">{new Date(message?.message_for_web?.in_terminal_date).toLocaleDateString('en-GB')}</td>)}
+                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.in_terminal_date).toLocaleDateString('en-GB')}</td>)}
                   </tr>
                 ) : (
                   <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Pick Up Date</td>
-                    <td className="py-2 px-4 border-b">Unkown</td>
+                    <td className={rowHeadTextSize}>Pick Up Date</td>
+                    <td className={rowContentTextSize}>Unkown</td>
                   </tr>
               )}
               {message?.message_for_web?.vessel ?(
                 <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Vessel</td>
-                    <td className="py-2 px-4 border-b">{message?.message_for_web?.vessel} {message?.message_for_web?.voyage}</td>
+                    <td className={rowHeadTextSize}>Vessel</td>
+                    <td className={rowContentTextSize}>{message?.message_for_web?.vessel} {message?.message_for_web?.voyage}</td>
                 </tr>
               ):
               (
                <tr>
-                  <td className="py-2 px-4 border-b font-semibold w-48">Vessel</td>
-                  <td className="py-2 px-4 border-b">Unkown</td>
+                  <td className={rowHeadTextSize}>Vessel</td>
+                  <td className={rowContentTextSize}>Unkown</td>
                </tr>
               )}
                 {message?.message_for_web?.ETD?(
                   <tr>
                     {message?.message_for_web?.departed == 0 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     Departure date
                     </td>
                     ):(null)}
                     {message?.message_for_web?.departed == 1 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     To deaprt on
                     </td>
                     ):(null)}
                     {message?.message_for_web?.departed == 2 ?(
-                    <td className="flex py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     Departed on
                     </td>
                     ):(null)}
                     {message?.message_for_web?.departed == 0 ?(
-                    <td className="py-2 px-4 border-b">
+                    <td className={rowContentTextSize}>
                     Unkown
                     </td>
-                    ): (<td className="py-2 px-4 border-b">{new Date(message?.message_for_web?.ETD).toLocaleDateString('en-GB')}</td>)}
+                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.ETD).toLocaleDateString('en-GB')}</td>)}
                   </tr>
                 ) : (
                   <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Departure date</td>
-                    <td className="py-2 px-4 border-b">Unkown</td>
+                    <td className={rowHeadTextSize}>Departure date</td>
+                    <td className={rowContentTextSize}>Unkown</td>
                   </tr>
                  )}
                 {message?.message_for_web?.ETA ?(
                   <tr>
                     {message?.message_for_web?.arrived == 0 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     Arrival date
                     </td>
                     ):(null)}
                     {message?.message_for_web?.arrived == 1 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     To arrive on
                     </td>
                     ):(null)}
                     {message?.message_for_web?.arrived == 2 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     Arrived on
                     </td>
                     ):(null)}
                     {message?.message_for_web?.arrived == 0 ?(
-                    <td className="py-2 px-4 border-b">
+                    <td className={rowContentTextSize}>
                     Unkown
                     </td>
-                    ): (<td className="py-2 px-4 border-b">{new Date(message?.message_for_web?.ETA).toLocaleDateString('en-GB')}</td>)}
+                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.ETA).toLocaleDateString('en-GB')}</td>)}
                   </tr>
                 ) : (
                   <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Arrival Date</td>
-                    <td className="py-2 px-4 border-b">Unkown</td>
+                    <td className={rowHeadTextSize}>Arrival Date</td>
+                    <td className={rowContentTextSize}>Unkown</td>
                   </tr>
                  )}
             </tbody>

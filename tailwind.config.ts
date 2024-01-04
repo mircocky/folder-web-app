@@ -16,6 +16,25 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        'xxs': '375px',  // Custom extra-extra-small screen size
+        'xs': '485px',   // Custom extra-small screen size
+        'sm': '640px',   // Custom small screen size
+        'md': '768px',   // Custom medium screen size
+        'lg': '1024px',  // Custom large screen size
+        'xl': '1280px',  // Custom extra-large screen size
+        '2xl': '1400px', // Custom 2 extra-large screen size
+      },
+      fontSize: {
+        'xxs': '0.45rem', // Extra-extra-small text size
+        'xs': '0.55rem', // Extra-small text size
+        'sm': '0.70rem',     // Small text size
+        'base': '0.85rem', // Base text size
+        'lg': '1.05rem',   // Large text size
+        'xl': '1.5rem',    // Extra-large text size
+        '2xl': '1.875rem', // 2 Extra-large text size
+        // Add more custom text sizes as needed
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

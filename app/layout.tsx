@@ -35,7 +35,7 @@ const RootLayout = ({
                 </li>
               </ul>
             </nav>
-            <div className="m-5 md:w-1/2">{children}</div>
+            <div className="m-2 p-1 xs:m-2 xs:p-1 sm:m-4 sm:p-2 md:m-8 md:p-4">{children}</div>
         </body>
     </html>
   );

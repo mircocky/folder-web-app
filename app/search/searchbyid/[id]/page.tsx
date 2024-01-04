@@ -49,6 +49,20 @@ const IdPage = async ({
     }
   })
 
+    // sizes of the main table
+  const rowHeadTextSize: string = "text-[0.8rem] py-1 px-2 w-36\
+    xxs:text-base xxs:py-1 xxs:px-2 xxs:w-42\
+    xs:text-lg xs:py-2 xs:px-4 xs:w-48\
+    sm:text-lg sm:py-3 sm:px-5 sm:w-72\
+    md:w-80\
+    font-semibold border-b";
+     
+
+  const rowContentTextSize: string = "text-[0.8rem] py-1 px-2\
+       xxs:text-base xxs:py-1 xxs:px-2\
+       xs:text-lg xs:py-2 xs:px-4\
+       sm:text-lg sm:py-2 sm:px-4\
+       border-b";
 
   return (
     <div>
@@ -61,36 +75,36 @@ const IdPage = async ({
         <table  className="bg-white border border-gray-300 w-full">
         <tbody>
           <tr>
-            <td className="py-2 px-4 border-b font-semibold w-48">Consol#</td>
-            <td className="py-2 px-4 border-b ">{SHIPMENT[0]?.CONSOL}</td>
+            <td className={rowHeadTextSize}>Consol#</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.CONSOL}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b font-semibold w-48">From</td>
-            <td className="py-2 px-4 border-b">{SHIPMENT[0]?.POL}</td>
+            <td className={rowHeadTextSize}>From</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.POL}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b font-semibold w-48">To</td>
-            <td className="py-2 px-4 border-b">{SHIPMENT[0]?.POD}</td>
+            <td className={rowHeadTextSize}>To</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.POD}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b font-semibold w-48">VESSEL</td>
-            <td className="py-2 px-4 border-b">{SHIPMENT[0]?.VESSEL} {SHIPMENT[0]?.VOY}</td>
+            <td className={rowHeadTextSize}>VESSEL</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.VESSEL} {SHIPMENT[0]?.VOY}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b font-semibold w-48">ETD </td>
-            <td className="py-2 px-4 border-b">{SHIPMENT[0]?.ETD?.toLocaleDateString()}</td>
+            <td className={rowHeadTextSize}>ETD </td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.ETD?.toLocaleDateString()}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b font-semibold w-48">ETA</td>
-            <td className="py-2 px-4 border-b">{SHIPMENT[0]?.ETA?.toLocaleDateString()}</td>
+            <td className={rowHeadTextSize}>ETA</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.ETA?.toLocaleDateString()}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b font-semibold w-48">CUSTOMS CLEAR</td>
-            <td className="py-2 px-4 border-b">{SHIPMENT[0]?.CLEAR?.toLocaleDateString()}</td>
+            <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.CLEAR?.toLocaleDateString()}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b font-semibold w-48">EST DELIVERY DATE</td>
-            <td className="py-2 px-4 border-b">{SHIPMENT[0]?.EST_DELIVERY_DATE?.toLocaleDateString()}</td>
+            <td className={rowHeadTextSize}>EST DELIVERY DATE</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.EST_DELIVERY_DATE?.toLocaleDateString()}</td>
           </tr>
         </tbody>
         </table>
@@ -102,24 +116,24 @@ const IdPage = async ({
           <td className="p-2 bg-orange-300"></td>
           </tr>
           <tr>
-          <td className="py-2 px-4 border-b font-semibold w-36">House# {job.job_seq}</td>
-          <td className="py-2 px-4 border-b text-red-500 ">{job?.house_num}</td>
+          <td className={rowHeadTextSize}>House# {job.job_seq}</td>
+          <td className={`${rowContentTextSize} text-red-500`}>{job?.house_num}</td>
           </tr>
           <tr>
-          <td className="py-2 px-4 border-b font-semibold w-36">Job ID</td>
-          <td className="py-2 px-4 border-b">{job?.job_id}</td>
+          <td className={rowHeadTextSize}>Job ID</td>
+          <td className={rowContentTextSize}>{job?.job_id}</td>
           </tr>
           <tr>
-          <td className="py-2 px-4 border-b font-semibold w-36">Client_ref#</td>
-          <td className="py-2 px-4 border-b">{job?.client_ref}</td>
+          <td className={rowHeadTextSize}>Client_ref#</td>
+          <td className={rowContentTextSize}>{job?.client_ref}</td>
           </tr>
           <tr>
-          <td className="py-2 px-4 border-b font-semibold w-36">Shipper</td>
-          <td className="py-2 px-4 border-b">{job?.shipper_name}</td>
+          <td className={rowHeadTextSize}>Shipper</td>
+          <td className={rowContentTextSize}>{job?.shipper_name}</td>
           </tr>
           <tr>
-          <td className="py-2 px-4 border-b font-semibold w-36">Consignee</td>
-          <td className="py-2 px-4 border-b">{job?.consignee_name}</td>
+          <td className={rowHeadTextSize}>Consignee</td>
+          <td className={rowContentTextSize}>{job?.consignee_name}</td>
           </tr>
           </tbody>
          )}
@@ -130,127 +144,127 @@ const IdPage = async ({
           <table  className="bg-white border border-gray-300 w-full">
             <tbody>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">PNL Booking#</td>
-                <td className="py-2 px-4 border-b">{job?.job_id}</td>
+                <td className={rowHeadTextSize}>PNL Booking#</td>
+                <td className={rowContentTextSize}>{job?.job_id}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">Client Ref</td>
-                <td className="py-2 px-4 border-b">{job?.client_ref}</td>
+                <td className={rowHeadTextSize}>Client Ref</td>
+                <td className={rowContentTextSize}>{job?.client_ref}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">Shipper</td>
-                <td className="py-2 px-4 border-b">{job?.shipper_name}</td>
+                <td className={rowHeadTextSize}>Shipper</td>
+                <td className={rowContentTextSize}>{job?.shipper_name}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">Consignee</td>
-                <td className="py-2 px-4 border-b">{job?.consignee_name}</td>
+                <td className={rowHeadTextSize}>Consignee</td>
+                <td className={rowContentTextSize}>{job?.consignee_name}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">From</td>
-                <td className="py-2 px-4 border-b">{job?.POL}</td>
+                <td className={rowHeadTextSize}>From</td>
+                <td className={rowContentTextSize}>{job?.POL}</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b font-semibold w-48">To</td>
-                <td className="py-2 px-4 border-b">{job?.POD}</td>
+                <td className={rowHeadTextSize}>To</td>
+                <td className={rowContentTextSize}>{job?.POD}</td>
               </tr>
               {job?.pickup_date? (
                   <tr>
                   {job?.pickedup == 1 ?(
-                    <td className="py-2 px-4 border-b font-semibold  underline text-orange-500 w-48">
+                    <td className={`${rowHeadTextSize} underline text-orange-500`}>
                     To be picked up on 
                     </td>
                     ):(null)}
                     {job?.pickedup == 2 ?(
-                    <td className="py-2 px-4 border-b font-semibold  underline text-green-500 w-48">
+                    <td className={`${rowHeadTextSize} underline text-green-500`}>
                     Picked up on *
                     </td>
                     ):(null)}
-                    <td className="py-2 px-4 border-b">
+                    <td className={rowContentTextSize}>
                     {job?.pickup_date?.toLocaleDateString('en-GB')}
                     </td>
                   </tr>
                 ) : (
                   <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Pick Up Date</td>
-                    <td className="py-2 px-4 border-b">Unkown</td>
+                    <td className={rowHeadTextSize}>Pick Up Date</td>
+                    <td className={rowContentTextSize}>Unkown</td>
                   </tr>
               )}
               {job?.in_terminal_date? (
                   <tr>
                     {job?.lodged_in_terminal == 1 ?(
-                    <td className="py-2 px-4 border-b font-semibold underline text-orange-500 w-48">
+                    <td className={`${rowHeadTextSize} underline text-orange-500`}>
                     To be lodged in terminal on
                     </td>
                     ):(null)}
                     {job?.lodged_in_terminal == 2 ?(
-                    <td className="py-2 px-4 border-b font-semibold  underline text-green-500 w-48">
+                    <td className={`${rowHeadTextSize} underline text-green-500`}>
                     Lodged in terminal on *
                     </td>
                     ):(null)}
-                    <td className="py-2 px-4 border-b">
+                    <td className={rowContentTextSize}>
                     {job?.in_terminal_date?.toLocaleDateString('en-GB')}
                     </td>
                   </tr>
                 ) : (
                   <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Lodge to Terminal Date</td>
-                    <td className="py-2 px-4 border-b">Unkown</td>
+                    <td className={rowHeadTextSize}>Lodge to Terminal Date</td>
+                    <td className={rowContentTextSize}>Unkown</td>
                   </tr>
                 )}
               {job?.vessel ?(
                 <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Vessel</td>
-                    <td className="py-2 px-4 border-b">{job?.vessel} {job?.voyage}</td>
+                    <td className={rowHeadTextSize}>Vessel</td>
+                    <td className={rowContentTextSize}>{job?.vessel} {job?.voyage}</td>
                 </tr>
               ):
               (
                <tr>
-                  <td className="py-2 px-4 border-b font-semibold w-48">Vessel</td>
-                  <td className="py-2 px-4 border-b">Unkown</td>
+                  <td className={rowHeadTextSize}>Vessel</td>
+                  <td className={rowContentTextSize}>Unkown</td>
                </tr>
               )}
                 {job?.ETD? (
                   <tr>
                     {job?.departed == 1 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     To depart on
                     </td>
                     ):(null)}
                     {job?.departed == 2 ?(
-                    <td className="flex py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     Departed on <Image src='/vessel_departed.png' alt='departed' width={70} height={70} />
                     </td>
                     ):(null)}
-                    <td className="py-2 px-4 border-b">
+                    <td className={rowContentTextSize}>
                     {job?.ETD?.toLocaleDateString('en-GB')}
                     </td>
                   </tr>
                 ) : (
                   <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Deaprture Date</td>
-                    <td className="py-2 px-4 border-b">Unkown</td>
+                    <td className={rowHeadTextSize}>Deaprture Date</td>
+                    <td className={rowContentTextSize}>Unkown</td>
                   </tr>
                 )}
                 {job?.ETA? (
                   <tr>
                     {job?.arrived == 1 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     To arrive on
                     </td>
                     ):(null)}
                     {job?.arrived == 2 ?(
-                    <td className="py-2 px-4 border-b font-semibold w-48">
+                    <td className={rowHeadTextSize}>
                     Arrived on
                     </td>
                     ):(null)}
-                    <td className="py-2 px-4 border-b">
+                    <td className={rowContentTextSize}>
                     {job?.ETA?.toLocaleDateString('en-GB')}
                     </td>
                   </tr>
                 ) : (
                   <tr>
-                    <td className="py-2 px-4 border-b font-semibold w-48">Arrival Date</td>
-                    <td className="py-2 px-4 border-b">Unkown</td>
+                    <td className={rowHeadTextSize}>Arrival Date</td>
+                    <td className={rowContentTextSize}>Unkown</td>
                   </tr>
                 )}
             </tbody>
