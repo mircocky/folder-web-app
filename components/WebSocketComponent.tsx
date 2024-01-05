@@ -310,15 +310,15 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   />
                 <span className="flex flex-col items-start">
                       <span className={`mt-1 ${textSizeClass}`}>
-                        {new Date(messages3.ETD).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                        {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
                         `ETD ${messages3.ETD}`
-                        ): `ETD ${new Date(messages3.ETD).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}`}
+                        ): `ETD ${new Date(messages3.ETD).toLocaleDateString('en-GB')}`}
                       </span>
 
                       <span className={`mt-1 ${textSizeClass}`}>
-                        {new Date(messages3.ETA).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                        {new Date(messages3.ETA).toLocaleDateString('en-GB') === "Invalid Date" ? (
                          `ETA ${messages3.ETA}`
-                        ):`ETA ${new Date(messages3.ETA).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}`}
+                        ):`ETA ${new Date(messages3.ETA).toLocaleDateString('en-GB')}`}
                       </span>
                   </span>
 
@@ -337,15 +337,15 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 <span className={`mt-1 ${textSizeClass}`}>In transit</span>  
                 <span className="flex flex-col items-start">
                       <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
-                        ATD {new Date(messages3.ETD).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                        ATD {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
                         messages3.ETD
-                        ):new Date(messages3.ETD).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                        ):new Date(messages3.ETD).toLocaleDateString('en-GB')}
                       </span>
 
                       <span className={`mt-1 ${textSizeClass}`}>
-                        ETA {new Date(messages3.ETA).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                        ETA {new Date(messages3.ETA).toLocaleDateString('en-GB') === "Invalid Date" ? (
                         messages3.ETA
-                        ):new Date(messages3.ETA).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                        ):new Date(messages3.ETA).toLocaleDateString('en-GB')}
                       </span>
                   </span>
 
@@ -366,15 +366,15 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
             <span className="flex flex-col items-start">
 
               <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
-                ATD {new Date(messages3.ETD).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                ATD {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
                 messages3.ETD
-                ):new Date(messages3.ETD).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                ):new Date(messages3.ETD).toLocaleDateString('en-GB')}
               </span>
 
               <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
-                ATA {new Date(messages3.ETA).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                ATA {new Date(messages3.ETA).toLocaleDateString('en-GB') === "Invalid Date" ? (
                 messages3.ETA
-                ):new Date(messages3.ETA).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                ):new Date(messages3.ETA).toLocaleDateString('en-GB')}
               </span>
             </span>
       </div>
@@ -414,9 +414,9 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 <span className={`mt-1 ${textSizeClass}`}>Customs</span>
 
                     <span className={`mt-1 ${textSizeClass}`}>
-                      Est {new Date(messages3.CLEAR).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                      Est {new Date(messages3.CLEAR).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.CLEAR
-                      ):new Date(messages3.CLEAR).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                      ):new Date(messages3.CLEAR).toLocaleDateString('en-GB')}
                     </span>
 
             </div>
@@ -436,9 +436,9 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 <span className={`mt-1 ${textSizeClass}`}>Customs clearing...</span>
 
                     <span className={`mt-1 ${textSizeClass}`}>
-                      Est {new Date(messages3.CLEAR).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                      Est {new Date(messages3.CLEAR).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.CLEAR
-                      ):new Date(messages3.CLEAR).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                      ):new Date(messages3.CLEAR).toLocaleDateString('en-GB')}
                     </span>
 
             </div>
@@ -457,9 +457,9 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 <span className={`mt-1 ${textSizeClass}`}>Customs cleared</span>
 
                     <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
-                      {new Date(messages3.CLEAR).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                      {new Date(messages3.CLEAR).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.CLEAR
-                      ):new Date(messages3.CLEAR).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                      ):new Date(messages3.CLEAR).toLocaleDateString('en-GB')}
                     </span>
 
             </div>
@@ -500,9 +500,9 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 <span className={`mt-1 ${textSizeClass}`}>Booking delivery</span>
 
                     <span className={`mt-1 ${textSizeClass}`}>
-                      {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                      {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.ETD
-                      ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                      ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
                     </span>
 
             </div>
@@ -525,7 +525,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       <Image
                         src="/pickup_done.png"
                         alt="delivery_done"
-                        className={iconsSizeClass}
+                      className={iconsSizeClass}
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
@@ -569,9 +569,9 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 <span className={`mt-1 ${textSizeClass}`}>Delivery confirmed*</span>
 
                     <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
-                      {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+                      {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.ETD
-                      ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                      ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
                     </span>
 
             </div>
@@ -586,9 +586,9 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                <span className={`mt-1 ${textSizeClass}`}>Client depot</span>
 
             <span className={`mt-1 ${textSizeClass}`}>
-              Est {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) === "Invalid Date" ? (
+              Est {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
               messages3.ETD
-              ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+              ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
             </span>
             </div>
               } 
@@ -660,7 +660,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
               height={iconSize.heightSize}
             />
             <span className={`mt-1 ${textSizeClass}`}>Truck booked</span>
-            <span className={`mt-1 ${textSizeClass}`}>Est. {new Date(messages2.pickup_date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+            <span className={`mt-1 ${textSizeClass}`}>Est. {new Date(messages2.pickup_date).toLocaleDateString('en-GB')}</span>
             </div>
       ):null}
    
@@ -674,7 +674,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 height={iconSize.heightSize}
               />
           <span className={`mt-1 ${textSizeClass}`}>Pickup done</span>
-          <span className={`mt-1 ${textSizeClass} underline text-green-500`}>{new Date(messages2.pickup_date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+          <span className={`mt-1 ${textSizeClass} underline text-green-500`}>{new Date(messages2.pickup_date).toLocaleDateString('en-GB')}</span>
       </div>
       ):null}
 
@@ -723,7 +723,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
               height={iconSize.heightSize}
             />
             <span className={`mt-1 ${textSizeClass}`}>To origin terminal</span>
-            <span className={`mt-1 ${textSizeClass}`}>Est. {new Date(messages2.in_terminal_date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+            <span className={`mt-1 ${textSizeClass}`}>Est. {new Date(messages2.in_terminal_date).toLocaleDateString('en-GB')}</span>
             </div>
       ):null}
    
@@ -737,7 +737,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 height={iconSize.heightSize}
               />
           <span className={`mt-1 ${textSizeClass}`}>In origin terminal</span>
-          <span className={`mt-1 ${textSizeClass} underline text-green-500`}>{new Date(messages2?.in_terminal_date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+          <span className={`mt-1 ${textSizeClass} underline text-green-500`}>{new Date(messages2?.in_terminal_date).toLocaleDateString('en-GB')}</span>
       </div>
       ):null}
       
@@ -796,9 +796,9 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                     width={iconSize.widthSize}
                     height={iconSize.heightSize}
                   />
-                  <span className={`mt-1 ${textSizeClass}`}>ETD {new Date(messages2.ETD).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+                  <span className={`mt-1 ${textSizeClass}`}>ETD {new Date(messages2.ETD).toLocaleDateString('en-GB')}</span>
                   {messages2.arrived == 1?(
-                   <span className={`mt-1 ${textSizeClass}`}>ETA {new Date(messages2?.ETA).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+                   <span className={`mt-1 ${textSizeClass}`}>ETA {new Date(messages2?.ETA).toLocaleDateString('en-GB')}</span>
                   ):null}
 
                     <span className="mt-5 mb-5">
@@ -824,7 +824,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       height={iconSize.heightSize}
                     />
                 <span className={`mt-1 ${textSizeClass}`}>In transit</span>
-                <span className={`mt-1 ${textSizeClass} underline text-green-500`}>ATD {new Date(messages2?.ETD).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+                <span className={`mt-1 ${textSizeClass} underline text-green-500`}>ATD {new Date(messages2?.ETD).toLocaleDateString('en-GB')}</span>
 
             <span className="mt-5 mb-5">
                 <Image
@@ -884,7 +884,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       Delivery
                     </span>
                     {messages2.arrived == 1?(
-                   <span className={`mt-1 ${textSizeClass}`}>Est {new Date(new Date(messages2?.ETA).getTime()+6*24*60*60*1000).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+                   <span className={`mt-1 ${textSizeClass}`}>Est {new Date(new Date(messages2?.ETA).getTime()+6*24*60*60*1000).toLocaleDateString('en-GB')}</span>
                   ):null}
                 </div>
                 
@@ -912,7 +912,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       Customs
                     </span>
                     {messages2.arrived == 1?(
-                   <span className={`mt-1 ${textSizeClass}`}>Est {new Date(new Date(messages2?.ETA).getTime()+3*24*60*60*1000).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+                   <span className={`mt-1 ${textSizeClass}`}>Est {new Date(new Date(messages2?.ETA).getTime()+3*24*60*60*1000).toLocaleDateString('en-GB')}</span>
                   ):null}
                 </div>
 
@@ -940,7 +940,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       Dest port
                     </span>
                     {messages2.arrived == 1?(
-                   <span className={`mt-1 ${textSizeClass}`}>ETA {new Date(messages2?.ETA).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+                   <span className={`mt-1 ${textSizeClass}`}>ETA {new Date(messages2?.ETA).toLocaleDateString('en-GB')}</span>
                   ):null}
                 </div>
          </div>
@@ -1051,7 +1051,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                     <td className={rowContentTextSize}>
                     Unkown
                     </td>
-                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.pickup_date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>)}
+                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.pickup_date).toLocaleDateString('en-GB')}</td>)}
                   </tr>
                 ) : (
                   <tr>
@@ -1080,7 +1080,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                     <td className={rowContentTextSize}>
                     Unkown
                     </td>
-                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.in_terminal_date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>)}
+                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.in_terminal_date).toLocaleDateString('en-GB')}</td>)}
                   </tr>
                 ) : (
                   <tr>
@@ -1121,7 +1121,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                     <td className={rowContentTextSize}>
                     Unkown
                     </td>
-                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.ETD).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>)}
+                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.ETD).toLocaleDateString('en-GB')}</td>)}
                   </tr>
                 ) : (
                   <tr>
@@ -1150,7 +1150,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                     <td className={rowContentTextSize}>
                     Unkown
                     </td>
-                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.ETA).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>)}
+                    ): (<td className={rowContentTextSize}>{new Date(message?.message_for_web?.ETA).toLocaleDateString('en-GB')}</td>)}
                   </tr>
                 ) : (
                   <tr>

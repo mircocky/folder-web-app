@@ -92,7 +92,7 @@ const IdPage = async ({
           </tr>
           <tr>
             <td className={rowHeadTextSize}>ETD </td>
-            <td className={rowContentTextSize}>{SHIPMENT[0]?.ETD?.toLocaleDateString()}</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.ETD?.toLocaleDateString('en-GB')}</td>
           </tr>
           <tr>
             <td className={rowHeadTextSize}>ETA</td>
