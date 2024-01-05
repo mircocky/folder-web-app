@@ -96,15 +96,15 @@ const IdPage = async ({
           </tr>
           <tr>
             <td className={rowHeadTextSize}>ETA</td>
-            <td className={rowContentTextSize}>{SHIPMENT[0]?.ETA?.toLocaleDateString()}</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.ETA?.toLocaleDateString('en-GB')}</td>
           </tr>
           <tr>
             <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
-            <td className={rowContentTextSize}>{SHIPMENT[0]?.CLEAR?.toLocaleDateString()}</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.CLEAR?.toLocaleDateString('en-GB')}</td>
           </tr>
           <tr>
             <td className={rowHeadTextSize}>EST DELIVERY DATE</td>
-            <td className={rowContentTextSize}>{SHIPMENT[0]?.EST_DELIVERY_DATE?.toLocaleDateString()}</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.EST_DELIVERY_DATE?.toLocaleDateString('en-GB')}</td>
           </tr>
         </tbody>
         </table>
