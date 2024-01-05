@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Image from 'next/image';
 import './globals.css'
 import Link from 'next/link'
+import Footer from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,7 +21,7 @@ const RootLayout = ({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
          <p className="flex p-3"><Image src="/logo.png" alt="Home" width={80} height={35} /> <span className="p-2 text-blue-500 font-bold underline">PNL Tracking System</span></p>
           <nav className="flex bg-blue-500 p-4">
               <ul className="flex space-x-10">
@@ -35,7 +36,11 @@ const RootLayout = ({
                 </li>
               </ul>
             </nav>
-            <div className="m-2 p-1 xs:m-2 xs:p-1 sm:m-4 sm:p-2 md:m-8 md:p-4">{children}</div>
+            
+            <div className="mx-2 px-1 xs:mx-2 xs:px-1 sm:mx-4 sm:px-2 md:mx-8 md:px-4">{children}</div>
+            
+            <div className="my-5"></div>
+            <Footer />
         </body>
     </html>
   );

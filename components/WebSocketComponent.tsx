@@ -287,7 +287,19 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
 
       <div className="flex justify-between">
 
-      {messages3.departed == 1 ? (
+      {messages3.departed == 0 || messages3.arrived == 0? (
+                <div className="flex flex-col items-center"> 
+                  <Image
+                    src="/vessel_to_depart.png"
+                    alt="vessel to depart"
+                    className={iconsSizeClass}
+                    width={iconSize.widthSize}
+                    height={iconSize.heightSize}
+                  />
+                </div>
+        ):null}  
+
+      {messages3.departed == 1 && messages3.arrived == 1? (
                   <div className="flex flex-col items-center"> 
                   <Image
                     src="/vessel_to_depart.png"
@@ -298,15 +310,15 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   />
                 <span className="flex flex-col items-start">
                       <span className={`mt-1 ${textSizeClass}`}>
-                        ETD {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
-                        messages3.ETD
-                        ):new Date(messages3.ETD).toLocaleDateString('en-GB')}
+                        {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
+                        `ETD ${messages3.ETD}`
+                        ): `ETD ${new Date(messages3.ETD).toLocaleDateString('en-GB')}`}
                       </span>
 
                       <span className={`mt-1 ${textSizeClass}`}>
-                        ETA {new Date(messages3.ETA).toLocaleDateString('en-GB') === "Invalid Date" ? (
-                        messages3.ETA
-                        ):new Date(messages3.ETA).toLocaleDateString('en-GB')}
+                        {new Date(messages3.ETA).toLocaleDateString('en-GB') === "Invalid Date" ? (
+                         `ETA ${messages3.ETA}`
+                        ):`ETA ${new Date(messages3.ETA).toLocaleDateString('en-GB')}`}
                       </span>
                   </span>
 
@@ -324,7 +336,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                   />
                 <span className={`mt-1 ${textSizeClass}`}>In transit</span>  
                 <span className="flex flex-col items-start">
-                      <span className={`mt-1 ${textSizeClass}`}>
+                      <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
                         ATD {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
                         messages3.ETD
                         ):new Date(messages3.ETD).toLocaleDateString('en-GB')}
@@ -353,13 +365,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
 
             <span className="flex flex-col items-start">
 
-              <span className={`mt-1 ${textSizeClass}`}>
+              <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
                 ATD {new Date(messages3.ETD).toLocaleDateString('en-GB') === "Invalid Date" ? (
                 messages3.ETD
                 ):new Date(messages3.ETD).toLocaleDateString('en-GB')}
               </span>
 
-              <span className={`mt-1 ${textSizeClass}`}>
+              <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
                 ATA {new Date(messages3.ETA).toLocaleDateString('en-GB') === "Invalid Date" ? (
                 messages3.ETA
                 ):new Date(messages3.ETA).toLocaleDateString('en-GB')}
@@ -444,7 +456,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       />
                 <span className={`mt-1 ${textSizeClass}`}>Customs cleared</span>
 
-                    <span className={`mt-1 ${textSizeClass}`}>
+                    <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
                       {new Date(messages3.CLEAR).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.CLEAR
                       ):new Date(messages3.CLEAR).toLocaleDateString('en-GB')}
@@ -485,7 +497,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                <span className={`mt-1 ${textSizeClass}`}>booking delivery</span>
+                <span className={`mt-1 ${textSizeClass}`}>Booking delivery</span>
 
                     <span className={`mt-1 ${textSizeClass}`}>
                       {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
@@ -506,37 +518,24 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                <span className={`mt-1 ${textSizeClass}`}>delivery booked</span>
-
-                    <span className={`mt-1 ${textSizeClass}`}>
-                      {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
-                      messages3.ETD
-                      ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
-                    </span>
-
+                <span className={`mt-1 ${textSizeClass}`}>Delivery booked</span>
             </div>
               ):null} 
                      {messages3.delivered == 2? (<div className="flex flex-col items-center"> 
                       <Image
                         src="/pickup_done.png"
                         alt="delivery_done"
+                        className={iconsSizeClass}
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                    <span className={`mt-1 ${textSizeClass}`}>Delivered</span>  
-
-                    <span className={`mt-1 ${textSizeClass}`}>
-                      {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
-                      messages3.ETD
-                      ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
-                    </span>
-
+                    <span className={`mt-1 ${textSizeClass}`}>Delivered*</span>
             </div>
               ):null} 
 
 
                        
-          {messages3.cleared == 2 && messages3.delivered == 1? (
+          {messages3.cleared == 2 && messages3.delivered == 1 && messages3.arrived == 2? (
                           <div className="flex flex-col items-center"> 
                                   <Image
                                     src="/arrow_active.gif"
@@ -567,9 +566,9 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                         width={iconSize.widthSize}
                         height={iconSize.heightSize}
                       />
-                <span className={`mt-1 ${textSizeClass}`}>Delivery confirmed</span>
+                <span className={`mt-1 ${textSizeClass}`}>Delivery confirmed*</span>
 
-                    <span className={`mt-1 ${textSizeClass}`}>
+                    <span className={`mt-1 ${textSizeClass} underline text-green-500`}>
                       {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
                       messages3.ETD
                       ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
@@ -587,7 +586,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                <span className={`mt-1 ${textSizeClass}`}>Client depot</span>
 
             <span className={`mt-1 ${textSizeClass}`}>
-              {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
+              Est {new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB') === "Invalid Date" ? (
               messages3.ETD
               ):new Date(messages3.EST_DELIVERY_DATE).toLocaleDateString('en-GB')}
             </span>
@@ -675,7 +674,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 height={iconSize.heightSize}
               />
           <span className={`mt-1 ${textSizeClass}`}>Pickup done</span>
-          <span className={`mt-1 ${textSizeClass}`}>{new Date(messages2.pickup_date).toLocaleDateString('en-GB')}</span>
+          <span className={`mt-1 ${textSizeClass} underline text-green-500`}>{new Date(messages2.pickup_date).toLocaleDateString('en-GB')}</span>
       </div>
       ):null}
 
@@ -710,7 +709,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
               width={iconSize.widthSize}
               height={iconSize.heightSize}
             />
-            <span className={`mt-1 ${textSizeClass}`}>Terminal(origin)</span>
+            <span className={`mt-1 ${textSizeClass}`}>Origin terminal</span>
             </div>
       ):null}
 
@@ -723,7 +722,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
               width={iconSize.widthSize}
               height={iconSize.heightSize}
             />
-            <span className={`mt-1 ${textSizeClass}`}>To terminal(origin)</span>
+            <span className={`mt-1 ${textSizeClass}`}>To origin terminal</span>
             <span className={`mt-1 ${textSizeClass}`}>Est. {new Date(messages2.in_terminal_date).toLocaleDateString('en-GB')}</span>
             </div>
       ):null}
@@ -737,8 +736,8 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 width={iconSize.widthSize}
                 height={iconSize.heightSize}
               />
-          <span className={`mt-1 ${textSizeClass}`}>In Termial(origin)</span>
-          <span className={`mt-1 ${textSizeClass}`}>{new Date(messages2?.in_terminal_date).toLocaleDateString('en-GB')}</span>
+          <span className={`mt-1 ${textSizeClass}`}>In origin terminal</span>
+          <span className={`mt-1 ${textSizeClass} underline text-green-500`}>{new Date(messages2?.in_terminal_date).toLocaleDateString('en-GB')}</span>
       </div>
       ):null}
       
@@ -825,7 +824,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                       height={iconSize.heightSize}
                     />
                 <span className={`mt-1 ${textSizeClass}`}>In transit</span>
-                <span className={`mt-1 ${textSizeClass}`}>ATD {new Date(messages2?.ETD).toLocaleDateString('en-GB')}</span>
+                <span className={`mt-1 ${textSizeClass} underline text-green-500`}>ATD {new Date(messages2?.ETD).toLocaleDateString('en-GB')}</span>
 
             <span className="mt-5 mb-5">
                 <Image
@@ -938,7 +937,7 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                           />
                     </span>
                     <span className={`mt-1 ${textSizeClass}`}>
-                      Dest Port
+                      Dest port
                     </span>
                     {messages2.arrived == 1?(
                    <span className={`mt-1 ${textSizeClass}`}>ETA {new Date(messages2?.ETA).toLocaleDateString('en-GB')}</span>
@@ -1109,13 +1108,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                     </td>
                     ):(null)}
                     {message?.message_for_web?.departed == 1 ?(
-                    <td className={rowHeadTextSize}>
-                    To deaprt on
+                    <td className={`${rowHeadTextSize} underline text-orange-500`}>
+                    To depart on
                     </td>
                     ):(null)}
                     {message?.message_for_web?.departed == 2 ?(
-                    <td className={rowHeadTextSize}>
-                    Departed on
+                    <td className={`${rowHeadTextSize} underline text-green-500`}>
+                    Departed on *
                     </td>
                     ):(null)}
                     {message?.message_for_web?.departed == 0 ?(
@@ -1138,13 +1137,13 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                     </td>
                     ):(null)}
                     {message?.message_for_web?.arrived == 1 ?(
-                    <td className={rowHeadTextSize}>
+                    <td className={`${rowHeadTextSize} underline text-orange-500`}>
                     To arrive on
                     </td>
                     ):(null)}
                     {message?.message_for_web?.arrived == 2 ?(
-                    <td className={rowHeadTextSize}>
-                    Arrived on
+                    <td className={`${rowHeadTextSize} underline text-green-500`}>
+                    Arrived on *
                     </td>
                     ):(null)}
                     {message?.message_for_web?.arrived == 0 ?(

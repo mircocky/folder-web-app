@@ -37,7 +37,7 @@ const handleRefresh = () => {
 
   return (
     <div>
-        <div className="flex mt-12">
+        <div className="flex mt-6 xs:w-96">
             <Input
                 className="me-4"
                 type="text"

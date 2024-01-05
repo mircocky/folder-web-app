@@ -231,8 +231,8 @@ const IdPage = async ({
                     </td>
                     ):(null)}
                     {job?.departed == 2 ?(
-                    <td className={rowHeadTextSize}>
-                    Departed on <Image src='/vessel_departed.png' alt='departed' width={70} height={70} />
+                    <td className={`${rowHeadTextSize} underline text-green-500`}>
+                    Departed on *
                     </td>
                     ):(null)}
                     <td className={rowContentTextSize}>
@@ -248,13 +248,13 @@ const IdPage = async ({
                 {job?.ETA? (
                   <tr>
                     {job?.arrived == 1 ?(
-                    <td className={rowHeadTextSize}>
+                    <td className={`${rowHeadTextSize} underline text-orange-500`}>
                     To arrive on
                     </td>
                     ):(null)}
                     {job?.arrived == 2 ?(
-                    <td className={rowHeadTextSize}>
-                    Arrived on
+                    <td className={`${rowHeadTextSize} underline text-green-500`}>
+                    Arrived on *
                     </td>
                     ):(null)}
                     <td className={rowContentTextSize}>
