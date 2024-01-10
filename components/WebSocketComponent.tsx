@@ -148,8 +148,8 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
 
   useEffect(() => {
     // Connect to the Socket.IO server
-    // const socket = io('wss://port-0-folder-web-app-websocket-server-32updzt2alppbaefq.sel4.cloudtype.app/');
-    const socket = io('http://localhost:3000');
+    const socket = io('wss://port-0-folder-web-app-websocket-server-32updzt2alppbaefq.sel4.cloudtype.app/');
+    // const socket = io('http://localhost:3000');
 
      socket.on('connect', () => {
       setIsConnected(true);
