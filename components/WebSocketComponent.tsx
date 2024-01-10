@@ -37,7 +37,9 @@ interface MessageWithTime {
     CONSOL?: string;
     VESSEL?: string;
     CLEAR?: string;
+    cleared?: number;
     EST_DELIVERY_DATE?: string;
+    delivered?: number;
     VOY?: string;
 
     // Add other properties as needed
@@ -146,8 +148,8 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
 
   useEffect(() => {
     // Connect to the Socket.IO server
-    const socket = io('wss://port-0-folder-web-app-websocket-server-32updzt2alppbaefq.sel4.cloudtype.app/');
-    // const socket = io('http://localhost:3000');
+    // const socket = io('wss://port-0-folder-web-app-websocket-server-32updzt2alppbaefq.sel4.cloudtype.app/');
+    const socket = io('http://localhost:3000');
 
      socket.on('connect', () => {
       setIsConnected(true);
@@ -976,22 +978,107 @@ const WebSocketComponent: React.FC <{ job_id: number, job:any, SHIPMENT:any }> =
                 <td className={rowHeadTextSize}>VESSEL</td>
                 <td className={rowContentTextSize}>{message?.message_for_web?.VESSEL} {message?.message_for_web?.VOY}</td>
               </tr>
+
+
+              {message?.message_for_web?.departed == 0 ?( 
               <tr>
                 <td className={rowHeadTextSize}>ETD</td>
+                <td className={rowContentTextSize}></td>
+              </tr>
+              ):null}
+              {message?.message_for_web?.departed == 1 ?( 
+              <tr>
+                <td className={`${rowHeadTextSize} underline text-orange-500`}>To depart on</td>
                 <td className={rowContentTextSize}>{message?.message_for_web?.ETD}</td>
               </tr>
+              ):null}
+              {message?.message_for_web?.departed == 2 ?( 
+              <tr>
+                <td className={`${rowHeadTextSize} underline text-green-500`}>Departed on *</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.ETD}</td>
+              </tr>
+              ):null}
+
+
+              {/* <tr>
+                <td className={rowHeadTextSize}>ETD</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.ETD}</td>
+              </tr> */}
+
+              {message?.message_for_web?.arrived == 0 ?( 
               <tr>
                 <td className={rowHeadTextSize}>ETA</td>
+                <td className={rowContentTextSize}></td>
+              </tr>
+              ):null}
+              {message?.message_for_web?.arrived == 1 ?( 
+              <tr>
+                <td className={`${rowHeadTextSize} underline text-orange-500`}>To arrive on</td>
                 <td className={rowContentTextSize}>{message?.message_for_web?.ETA}</td>
               </tr>
+              ):null}
+              {message?.message_for_web?.arrived == 2 ?( 
+              <tr>
+                <td className={`${rowHeadTextSize} underline text-green-500`}>Arrived on *</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.ETA}</td>
+              </tr>
+              ):null}
+
+
+              {/* <tr>
+                <td className={rowHeadTextSize}>ETA</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.ETA}</td>
+              </tr> */}
+
+              {message?.message_for_web?.cleared == 0 ?( 
+              <tr>
+                <td className={rowHeadTextSize}>ETD</td>
+                <td className={rowContentTextSize}></td>
+              </tr>
+              ):null}
+              {message?.message_for_web?.cleared == 1 ?( 
+              <tr>
+                <td className={`${rowHeadTextSize} underline text-orange-500`}>To arrive on</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.ETA}</td>
+              </tr>
+              ):null}
+              {message?.message_for_web?.cleared == 2 ?( 
+              <tr>
+                <td className={`${rowHeadTextSize} underline text-green-500`}>Arrived on *</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.ETA}</td>
+              </tr>
+              ):null}
+{/* 
               <tr>
                 <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
                 <td className={rowContentTextSize}>{message?.message_for_web?.CLEAR}</td>
-              </tr>
+              </tr> */}
+
+
+              {message?.message_for_web?.delivered == 0 ?( 
               <tr>
                 <td className={rowHeadTextSize}>EST DELIVERY DATE</td>
+                <td className={rowContentTextSize}></td>
+              </tr>
+              ):null}
+              {message?.message_for_web?.delivered == 1 ?( 
+              <tr>
+                <td className={`${rowHeadTextSize} underline text-orange-500`}>To be delivered on</td>
                 <td className={rowContentTextSize}>{message?.message_for_web?.EST_DELIVERY_DATE}</td>
               </tr>
+              ):null}
+              {message?.message_for_web?.delivered == 2 ?( 
+              <tr>
+                <td className={`${rowHeadTextSize} underline text-green-500`}>Delivered on *</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.EST_DELIVERY_DATE}</td>
+              </tr>
+              ):null}
+
+              {/* <tr>
+                <td className={rowHeadTextSize}>EST DELIVERY DATE</td>
+                <td className={rowContentTextSize}>{message?.message_for_web?.EST_DELIVERY_DATE}</td>
+              </tr> */}
+
             </tbody>
          </table>
       </main>

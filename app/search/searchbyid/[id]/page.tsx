@@ -90,22 +90,105 @@ const IdPage = async ({
             <td className={rowHeadTextSize}>VESSEL</td>
             <td className={rowContentTextSize}>{SHIPMENT[0]?.VESSEL} {SHIPMENT[0]?.VOY}</td>
           </tr>
+      
+          
+          {SHIPMENT[0].departed == 0 ?( 
           <tr>
-            <td className={rowHeadTextSize}>ETD </td>
+            <td className={rowHeadTextSize}>ETD</td>
+            <td className={rowContentTextSize}></td>
+          </tr>
+          ):null}
+          {SHIPMENT[0].departed == 1 ?( 
+          <tr>
+            <td className={`${rowHeadTextSize} underline text-orange-500`}>To depart on</td>
             <td className={rowContentTextSize}>{SHIPMENT[0]?.ETD?.toLocaleDateString('en-GB')}</td>
           </tr>
+          ):null}
+          {SHIPMENT[0].departed == 2 ?( 
           <tr>
+            <td className={`${rowHeadTextSize} underline text-green-500`}>Departed on *</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.ETD?.toLocaleDateString('en-GB')}</td>
+          </tr>
+          ):null}
+
+          {/* <tr>
+            <td className={rowHeadTextSize}>ETD </td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.ETD?.toLocaleDateString('en-GB')}</td>
+          </tr> */}
+      
+          {SHIPMENT[0].arrived == 0 ?( 
+          <tr>
+            <td className={rowHeadTextSize}>ETD</td>
+            <td className={rowContentTextSize}></td>
+          </tr>
+          ):null}
+          {SHIPMENT[0].arrived  == 1 ?( 
+          <tr>
+            <td className={`${rowHeadTextSize} underline text-orange-500`}>To arrive on</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0].ETA?.toLocaleDateString('en-GB')}</td>
+          </tr>
+          ):null}
+          {SHIPMENT[0].arrived  == 2 ?( 
+          <tr>
+            <td className={`${rowHeadTextSize} underline text-green-500`}>Arrived on *</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0].ETA?.toLocaleDateString('en-GB')}</td>
+          </tr>
+          ):null}
+
+          {/* <tr>
             <td className={rowHeadTextSize}>ETA</td>
             <td className={rowContentTextSize}>{SHIPMENT[0]?.ETA?.toLocaleDateString('en-GB')}</td>
-          </tr>
+          </tr> */}
+
+        {SHIPMENT[0].cleared == 0 ?( 
           <tr>
             <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
-            <td className={rowContentTextSize}>{SHIPMENT[0]?.CLEAR?.toLocaleDateString('en-GB')}</td>
+            <td className={rowContentTextSize}></td>
           </tr>
+          ):null}
+          {SHIPMENT[0].cleared  == 1 ?( 
           <tr>
+            <td className={`${rowHeadTextSize} underline text-orange-500`}>To be cleared on</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0].CLEAR?.toLocaleDateString('en-GB')}</td>
+          </tr>
+          ):null}
+          {SHIPMENT[0].cleared  == 2 ?( 
+          <tr>
+            <td className={`${rowHeadTextSize} underline text-green-500`}>Cleared on *</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0].CLEAR?.toLocaleDateString('en-GB')}</td>
+          </tr>
+          ):null}
+
+          {/* <tr>
+            <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.CLEAR?.toLocaleDateString('en-GB')}</td>
+          </tr> */}
+
+          
+          {SHIPMENT[0].delivered == 0 ?( 
+          <tr>
+            <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
+            <td className={rowContentTextSize}></td>
+          </tr>
+          ):null}
+          {SHIPMENT[0].delivered  == 1 ?( 
+          <tr>
+            <td className={`${rowHeadTextSize} underline text-orange-500`}>To be delivered on</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0].EST_DELIVERY_DATE?.toLocaleDateString('en-GB')}</td>
+          </tr>
+          ):null}
+          {SHIPMENT[0].delivered  == 2 ?( 
+          <tr>
+            <td className={`${rowHeadTextSize} underline text-green-500`}>Delivered on *</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0].EST_DELIVERY_DATE?.toLocaleDateString('en-GB')}</td>
+          </tr>
+          ):null}
+
+          {/* <tr>
             <td className={rowHeadTextSize}>EST DELIVERY DATE</td>
             <td className={rowContentTextSize}>{SHIPMENT[0]?.EST_DELIVERY_DATE?.toLocaleDateString('en-GB')}</td>
-          </tr>
+          </tr> */}
+
         </tbody>
         </table>
         <table className="mt-3 bg-white border border-gray-300 w-full">
