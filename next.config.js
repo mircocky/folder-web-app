@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-
+  pageExtensions: ['tsx', 'ts', 'jsx', 'js', 'mdx', 'md'], // Add 'tsx' and 'ts' if not present
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.experiments = { layers: true };
@@ -9,5 +9,5 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig
+module.exports = nextConfig;
 

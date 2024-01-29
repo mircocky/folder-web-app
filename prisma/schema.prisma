@@ -39,19 +39,19 @@ model FIS_JOBLIST {
   departed           Int?      @default(0)
   ETA                DateTime? @db.Date
   arrived            Int?      @default(0)
-  email_shipper      String?   @db.VarChar(255)
-  mobile_shipper     String?   @db.VarChar(25)
+  email_shipper      String?   @db.VarChar(1500)
+  mobile_shipper     String?   @db.VarChar(500)
   commodity          String?   @db.VarChar(45)
   agent              String?   @db.VarChar(25)
   operator           String?   @db.VarChar(20)
   job_seq            Int?
   shipper_name       String?   @db.VarChar(45)
   consignee_name     String?   @db.VarChar(45)
-  agent_name         String?   @db.VarChar(45)
-  email_consignee    String?   @db.VarChar(45)
-  mobile_consignee   String?   @db.VarChar(45)
-  email_agent        String?   @db.VarChar(45)
-  mobile_agent       String?   @db.VarChar(45)
+  agent_name         String?   @db.VarChar(100)
+  email_consignee    String?   @db.VarChar(1500)
+  mobile_consignee   String?   @db.VarChar(500)
+  email_agent        String?   @db.VarChar(1500)
+  mobile_agent       String?   @db.VarChar(500)
   memo               String?   @default("") @db.VarChar(500)
 }
 
@@ -66,15 +66,16 @@ model FIS_SHIPMENTLIST {
   Lloyds            String?   @db.VarChar(45)
   VOY               String?   @db.VarChar(45)
   ETD               DateTime? @db.Date
-  departed          Int?
+  departed          Int?      @default(0)
   ETA               DateTime? @db.Date
-  arrived           Int?
+  arrived           Int?      @default(0)
   CLEAR             DateTime? @db.Date
-  cleared           Int?
+  cleared           Int?      @default(0)
   EST_DELIVERY_DATE DateTime? @map("EST DELIVERY_DATE") @db.Date
-  delivered         Int?
+  delivered         Int?      @default(0)
   POL               String?   @db.VarChar(15)
   POD               String?   @db.VarChar(15)
+  memo              String?   @db.VarChar(500)
 }
 
 model ACC_NOTIFICATION {
@@ -97,4 +98,9 @@ model ACC_NOTIFICATION {
   del_booking_export   Int?   @db.TinyInt
   delivered_import     Int?   @db.TinyInt
   delivered_export     Int?   @db.TinyInt
+}
+
+model transportBooking {
+  id     Int  @id @default(autoincrement())
+  job_id Int?
 }

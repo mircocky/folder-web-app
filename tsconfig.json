@@ -27,7 +27,9 @@
 // }
 {
   "compilerOptions": {
-    "types": ["socket.io-client"],
+    "types": [
+      "socket.io-client"
+    ],
     "outDir": "./.next",
     "target": "esnext",
     "lib": [
