@@ -17,11 +17,12 @@ module.exports = {
     },
     extend: {
       screens: {
+        'xxxs': '200px',
         'xxs': '375px',  // Custom extra-extra-small screen size
         'xs': '485px',   // Custom extra-small screen size
-        'sm': '640px',   // Custom small screen size
-        'md': '768px',   // Custom medium screen size
-        'lg': '1024px',  // Custom large screen size
+        'sm': '835px',   // Custom small screen size
+        'md': '1007px',   // Custom medium screen size
+        'lg': '1177px',  // Custom large screen size
         'xl': '1280px',  // Custom extra-large screen size
         '2xl': '1400px', // Custom 2 extra-large screen size
       },

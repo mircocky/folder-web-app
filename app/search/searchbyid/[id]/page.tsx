@@ -1,7 +1,13 @@
 import { PrismaClient } from '@prisma/client'
-import { Prisma } from '@prisma/client';
 import WebSocketComponent from '@/components/WebSocketComponent';
-import Image from 'next/image';
+import { 
+  MdCancel,
+  MdCheckCircle,
+ } from 'react-icons/md'; 
+
+ import { ClipLoader } from 'react-spinners';
+
+
 
 const IdPage = async ({
     params,
@@ -11,12 +17,6 @@ const IdPage = async ({
 
   const prisma = new PrismaClient()
   let job_id = params.id
-
-
-  type ShipmentWhereInput = Omit<Prisma.FIS_SHIPMENTLISTWhereInput, 'CONSOL'> & {
-    CONSOL?: Prisma.StringFilter;
-  };
-
 
   const job = await prisma.fIS_JOBLIST.findUnique({
     where: {
@@ -29,8 +29,20 @@ const IdPage = async ({
       CONSOL: {
         equals: job?.consol_num ?? "",
       },
-    } as ShipmentWhereInput,
+    },
   });
+
+  const jobs = await prisma.fIS_JOBLIST.findMany({
+    where: {
+     consol_num: job?.consol_num ?? "",
+    }
+  })
+
+  const containers = await prisma.fRT_CONTAINER.findMany({
+    where: {
+     consol_num: job?.consol_num ?? "",
+    }
+  })
 
   if (SHIPMENT.length > 0) {
     // Process the case where there is at least one matching record
@@ -49,6 +61,60 @@ const IdPage = async ({
     }
   })
 
+ 
+
+  const POLCodeToFind = job?.POL;
+  let POL_NAME = '';
+    
+  if (POLCodeToFind) {
+    try {
+      const portDetails = await prisma.uN_PORTCODE.findUnique({
+        where: {
+          PORT_CODE: POLCodeToFind,
+        },
+      });
+  
+      if (portDetails) {
+        POL_NAME = portDetails.PORT_NAME || ''; 
+        console.log(`The PORT_NAME for POL '${POLCodeToFind}' is: ${POL_NAME}`);
+      } else {
+        POL_NAME = ''
+        console.log(`No entry found for POL '${POLCodeToFind}'.`);
+      }
+    } catch (error) {
+      console.error(`Error fetching data for POL '${POLCodeToFind}':`, error);
+    }
+  } else {
+    console.log("No POL value found in the first element of SHIPMENT.");
+  }
+  
+  const PODCodeToFind = job?.POD;
+  let POD_NAME = '';
+  
+  if (PODCodeToFind) {
+    try {
+      const PODDetails = await prisma.uN_PORTCODE.findUnique({
+        where: {
+          PORT_CODE: PODCodeToFind,
+        },
+      });
+  
+      if (PODDetails) {
+        POD_NAME = PODDetails.PORT_NAME || '';
+        console.log(`The PORT_NAME for POD '${PODCodeToFind}' is: ${POD_NAME}`);
+      } else {
+        POD_NAME = ''
+        console.log(`No entry found for POD '${PODCodeToFind}'.`);
+      }
+    } catch (error) {
+      console.error(`Error fetching data for POD '${PODCodeToFind}':`, error);
+    }
+  } else {
+    console.log("No POD value found in the first element of SHIPMENT.");
+  }
+
+
+
     // sizes of the main table
   const rowHeadTextSize: string = "text-[0.8rem] py-1 px-2 w-36\
     xxs:text-base xxs:py-1 xxs:px-2 xxs:w-42\
@@ -64,9 +130,11 @@ const IdPage = async ({
        sm:text-lg sm:py-2 sm:px-4\
        border-b";
 
+  const chkIconsSizeClass:string = "xxs:w-3 xxs:h-3 xs:w-4 xs:h-4 sm:w-4 sm:h-4"
+
   return (
     <div>
-      <div><WebSocketComponent job_id={job_id} job={job} SHIPMENT={SHIPMENT}/></div>
+      <div><WebSocketComponent job_id={job_id} job={job} SHIPMENT={SHIPMENT} jobs={jobs} containers={containers}/></div>
       <h1 className="rounded bg-yellow-200 mb-5 mt-5 p-2 text-center text-lg font-semibold">
         Search By ID
       </h1>
@@ -75,23 +143,20 @@ const IdPage = async ({
         <table  className="bg-white border border-gray-300 w-full">
         <tbody>
           <tr>
-            <td className={rowHeadTextSize}>Consol#</td>
-            <td className={rowContentTextSize}>{SHIPMENT[0]?.CONSOL}</td>
+            <td colSpan={2} className={`bg-blue-300 text-white ${rowHeadTextSize}`}>Vessel Details</td>
+          </tr>
+          <tr>
+            <td className={rowHeadTextSize}>Vessel</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.VESSEL} {SHIPMENT[0]?.VOY}</td>
           </tr>
           <tr>
             <td className={rowHeadTextSize}>From</td>
-            <td className={rowContentTextSize}>{SHIPMENT[0]?.POL}</td>
+            <td className={rowContentTextSize}>{POL_NAME}</td>
           </tr>
           <tr>
             <td className={rowHeadTextSize}>To</td>
-            <td className={rowContentTextSize}>{SHIPMENT[0]?.POD}</td>
+            <td className={rowContentTextSize}>{POD_NAME}</td>
           </tr>
-          <tr>
-            <td className={rowHeadTextSize}>VESSEL</td>
-            <td className={rowContentTextSize}>{SHIPMENT[0]?.VESSEL} {SHIPMENT[0]?.VOY}</td>
-          </tr>
-      
-          
           {SHIPMENT[0].departed == 0 ?( 
           <tr>
             <td className={rowHeadTextSize}>ETD</td>
@@ -135,12 +200,17 @@ const IdPage = async ({
           </tr>
           ):null}
 
+          <tr>
+            <td className={rowHeadTextSize}>PNL Job#</td>
+            <td className={rowContentTextSize}>{SHIPMENT[0]?.CONSOL}</td>
+          </tr>
+
           {/* <tr>
             <td className={rowHeadTextSize}>ETA</td>
             <td className={rowContentTextSize}>{SHIPMENT[0]?.ETA?.toLocaleDateString('en-GB')}</td>
           </tr> */}
 
-        {SHIPMENT[0].cleared == 0 ?( 
+        {/*CONTENT {SHIPMENT[0].cleared == 0 ?( 
           <tr>
             <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
             <td className={rowContentTextSize}></td>
@@ -157,7 +227,7 @@ const IdPage = async ({
             <td className={`${rowHeadTextSize} underline text-green-500`}>Cleared on *</td>
             <td className={rowContentTextSize}>{SHIPMENT[0].CLEAR?.toLocaleDateString('en-GB')}</td>
           </tr>
-          ):null}
+          ):null} */}
 
           {/* <tr>
             <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
@@ -165,7 +235,7 @@ const IdPage = async ({
           </tr> */}
 
           
-          {SHIPMENT[0].delivered == 0 ?( 
+          {/* CONTENT {SHIPMENT[0].delivered == 0 ?( 
           <tr>
             <td className={rowHeadTextSize}>CUSTOMS CLEAR</td>
             <td className={rowContentTextSize}></td>
@@ -182,7 +252,7 @@ const IdPage = async ({
             <td className={`${rowHeadTextSize} underline text-green-500`}>Delivered on *</td>
             <td className={rowContentTextSize}>{SHIPMENT[0].EST_DELIVERY_DATE?.toLocaleDateString('en-GB')}</td>
           </tr>
-          ):null}
+          ):null} */}
 
           {/* <tr>
             <td className={rowHeadTextSize}>EST DELIVERY DATE</td>
@@ -192,7 +262,7 @@ const IdPage = async ({
         </tbody>
         </table>
         <table className="mt-3 bg-white border border-gray-300 w-full">
-        {consol_jobs.map((job) => 
+        {consol_jobs.map((job:any) => 
           <tbody className="m-2" key={job.job_id} >
           <tr>
           <td className="p-2 bg-orange-300"></td>
@@ -218,6 +288,38 @@ const IdPage = async ({
           <td className={rowHeadTextSize}>Consignee</td>
           <td className={rowContentTextSize}>{job?.consignee_name}</td>
           </tr>
+          <tr>
+          <td className={rowHeadTextSize}>Customs Clear</td>
+          <td className={rowContentTextSize}>
+             {job.cleared === 0 && (
+                  <span className="flex">
+                    <span className={`text-slate-400`}>
+                      TBA
+                    </span>
+                  </span>
+                      )}
+             {job.cleared === 1 && (
+                  <span className="flex">
+                    <span className={`text-blue-600`}>
+                           {new Date(job?.clear).toLocaleDateString('en-GB', { dateStyle: 'short' })} (Est.)
+                      </span>
+                      <span className={`flex ms-1 mt-1 xxxs:w-3 xxxs:h-3 ${chkIconsSizeClass}`}>
+                          <ClipLoader color={'#123abc'} loading={true} size="100%" />
+                      </span>   
+                  </span>
+                      )}
+            {job.cleared === 2 && (
+                  <span className="flex">
+                      <span className={`text-green-600`}>
+                            {new Date(job?.clear).toLocaleDateString('en-GB', { dateStyle: 'short' })}
+                      </span>
+                      <span className="ms-1 flex items-center">
+                      <MdCheckCircle className ={`text-green-500`} />
+                      </span>
+                  </span>
+             )}
+            </td>
+            </tr>
           </tbody>
          )}
          </table>
@@ -226,10 +328,19 @@ const IdPage = async ({
         {job ? (
           <table  className="bg-white border border-gray-300 w-full">
             <tbody>
+              {job.job_status === 0 ?(
+              <tr>
+                <td className={rowHeadTextSize}>PNL Booking#</td>
+                <td className={rowContentTextSize}>
+                  <span  className='line-through' style={{ textDecorationColor: 'red'}}>{job?.job_id}</span><span className="text-red-500"> Cancelled</span>
+                  </td>
+              </tr>
+              ):(
               <tr>
                 <td className={rowHeadTextSize}>PNL Booking#</td>
                 <td className={rowContentTextSize}>{job?.job_id}</td>
               </tr>
+              )}
               <tr>
                 <td className={rowHeadTextSize}>Client Ref</td>
                 <td className={rowContentTextSize}>{job?.client_ref}</td>
@@ -244,11 +355,11 @@ const IdPage = async ({
               </tr>
               <tr>
                 <td className={rowHeadTextSize}>From</td>
-                <td className={rowContentTextSize}>{job?.POL}</td>
+                <td className={rowContentTextSize}>{POL_NAME}</td>
               </tr>
               <tr>
                 <td className={rowHeadTextSize}>To</td>
-                <td className={rowContentTextSize}>{job?.POD}</td>
+                <td className={rowContentTextSize}>{POD_NAME}</td>
               </tr>
               {job?.pickup_date? (
                   <tr>

@@ -39,6 +39,8 @@ model FIS_JOBLIST {
   departed           Int?      @default(0)
   ETA                DateTime? @db.Date
   arrived            Int?      @default(0)
+  clear              DateTime? @db.Date
+  cleared            Int?
   email_shipper      String?   @db.VarChar(1500)
   mobile_shipper     String?   @db.VarChar(500)
   commodity          String?   @db.VarChar(45)
@@ -53,6 +55,7 @@ model FIS_JOBLIST {
   email_agent        String?   @db.VarChar(1500)
   mobile_agent       String?   @db.VarChar(500)
   memo               String?   @default("") @db.VarChar(500)
+  created_on         DateTime  @db.DateTime(0)
 }
 
 model FIS_SHIPMENTLIST {
@@ -103,4 +106,32 @@ model ACC_NOTIFICATION {
 model transportBooking {
   id     Int  @id @default(autoincrement())
   job_id Int?
+}
+
+model UN_PORTCODE {
+  PORT_CODE String  @id @unique(map: "PORT_CODE_UNIQUE") @db.VarChar(45)
+  PORT_NAME String? @db.VarChar(45)
+}
+
+model FIS_NOTICE_HISTORY {
+  job_id       String  @id @db.VarChar(45)
+  history_data String? @db.LongText
+}
+
+model FRT_CONTAINER {
+  container_id   Int       @id @default(autoincrement())
+  department     String?   @db.VarChar(5)
+  seq            Int?
+  load           String?   @db.VarChar(5)
+  container_type String?   @db.VarChar(10)
+  consol_num     String?   @db.VarChar(45)
+  c_number       String?   @db.VarChar(11)
+  seal_number    String?   @db.VarChar(20)
+  tare_weight    Decimal?  @db.Decimal(15, 5)
+  weight         Decimal?  @db.Decimal(15, 5)
+  cubic          Decimal?  @db.Decimal(15, 5)
+  packs          Int?
+  pack_type      String?   @db.VarChar(10)
+  delivery_date  DateTime? @db.Date
+  delivered      Int?
 }
